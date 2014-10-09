@@ -1,7 +1,3 @@
-
-
-
-
 / JUMBOTRON
 
 .jumbotron
@@ -11,23 +7,36 @@
 .container
   .row
     .col-md-4
-      =image_tag ('image.jpg'), :size => '200x200', :class => 'img-reponsive img-circle'
-      %h2 Task
-      %p Group Project and list just the way you like them.
-      %p
+      .thumbnail
+        =image_tag ('image.jpg'), :class => 'img-reponsive'
+
+        %h2 Task
+
+        %p Group Project and list just the way you like them.
+        %p
+        %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Task
     .col-md-4
-      =image_tag ('image.jpg'), :size =>'200x200', :class => 'img-reponsive img-circle'
-      %h2 Documents
-      %ol
-        %li Upload
-        %li Comment
-        %li Revise
+      .thumbnail
+        =image_tag ('image.jpg'), :class => 'img-reponsive'
+
+        %h2 Documents
+        %ol
+          %li Upload
+          %li Comment
+          %li Revise
+
+        %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Document
     .col-md-4
-      =image_tag ('image.jpg'), :size => '200x200', :class => 'img-reponsive img-circle'
-      %h2 Comments
-      %ol
-        %li Comments on task and documents
-        %li Get email notifications
+      .thumbnail
+        =image_tag ('image.jpg'), :class => 'img-reponsive'
+
+
+        %h2 Comments
+        %ol
+          %li Comments on task and documents
+          %li Get email notificationsch
+        %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Comments
+
   %hr/
   %footer
     %p Placement for Footer
