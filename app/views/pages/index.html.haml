@@ -7,35 +7,33 @@
 .container
   .row
     .col-md-4
-      .thumbnail
-        =image_tag ('image.jpg'), :class => 'img-reponsive'
+      =image_tag('image.jpg', :class => 'img-responsive')
+      .panel.panel-default
+        .panel-heading
+          %h2 Task
 
-        %h2 Task
-
-        %p Group Project and list just the way you like them.
-        %p
-        %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Task
+          %p Group Project and list just the way you like them.
+          %p
+          %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Task
     .col-md-4
-      .thumbnail
-        =image_tag ('image.jpg'), :class => 'img-reponsive'
-
-        %h2 Documents
-        %ol
-          %li Upload
-          %li Comment
-          %li Revise
-
-        %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Document
+      =image_tag('image.jpg', :class => 'img-responsive')
+      .panel.panel-default
+        .panel-heading
+          %h2 Documents
+          %ol
+            %li Upload
+            %li Comment
+            %li Revise
+          %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Document
     .col-md-4
-      .thumbnail
-        =image_tag ('image.jpg'), :class => 'img-reponsive'
-
-
-        %h2 Comments
-        %ol
-          %li Comments on task and documents
-          %li Get email notificationsch
-        %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Comments
+      =image_tag('image.jpg', :class => 'img-responsive')
+      .panel.panel-default
+        .panel-heading
+          %h2 Comments
+          %ol
+            %li Comments on task and documents
+            %li Get email notificationsch
+          %button.btn.btn-default.btn-lg{:type => "button", :href => "#"} Comments
 
   %hr/
   %footer
