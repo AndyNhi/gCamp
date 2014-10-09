@@ -1,0 +1,44 @@
+
+
+
+
+/ JUMBOTRON
+
+.jumbotron
+  .container
+    %h1 gCamp!
+    %p Your life organized.
+.container
+  .row
+    .col-md-4
+      =image_tag ('image.jpg'), :size => '200x200', :class => 'img-reponsive img-circle'
+      %h2 Task
+      %p Group Project and list just the way you like them.
+      %p
+    .col-md-4
+      =image_tag ('image.jpg'), :size =>'200x200', :class => 'img-reponsive img-circle'
+      %h2 Documents
+      %ol
+        %li Upload
+        %li Comment
+        %li Revise
+    .col-md-4
+      =image_tag ('image.jpg'), :size => '200x200', :class => 'img-reponsive img-circle'
+      %h2 Comments
+      %ol
+        %li Comments on task and documents
+        %li Get email notifications
+  %hr/
+  %footer
+    %p Placement for Footer
+
+
+
+/
+  Bootstrap core JavaScript
+  \==================================================
+/ Placed at the end of the document so the pages load faster
+%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
+%script{:src => "../../dist/js/bootstrap.min.js"}
+/ IE10 viewport hack for Surface/desktop Windows 8 bug
+%script{:src => "../../assets/js/ie10-viewport-bug-workaround.js"}
