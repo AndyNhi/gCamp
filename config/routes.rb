@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get '/pages/documents', to: 'pages#documents', as: :documents
   get '/pages/comments', to: 'pages#comments', as: :comments
 
-  get '/about', to: 'pages#about', as: :about
-  get '/terms', to: 'pages#term', as: :term
+  get '/about', to: 'about#about', as: :about
+  get '/terms', to: 'term#term', as: :term
 end

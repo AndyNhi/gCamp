@@ -4,11 +4,14 @@ gem 'haml', '~> 4.0.5'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
+gem 'rails-i18n', '~> 4.0.3'
+
 
 group :production do
   gem "pg"
   gem "rails_12factor"
 end
+
 
 
 

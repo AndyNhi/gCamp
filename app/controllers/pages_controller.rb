@@ -19,7 +19,6 @@ def terms
 end
 
 
-
 def task
 end
 
