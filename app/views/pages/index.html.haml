@@ -3,35 +3,26 @@
   .jumbotron
     %h1 gCamp!
     %p Your life organized.
-  .row
-    .col-md-4
-      =image_tag('image.jpg', :class => 'img-responsive')
-      .panel.panel-default
-        .panel-heading
-          %h2 Task
 
-          %p Group Project and list just the way you like them.
-          %p
-          %a.button.btn.btn-default.btn-lg{:type => "button", :href => "/pages/task"} Task
-    .col-md-4
-      =image_tag('image.jpg', :class => 'img-responsive')
-      .panel.panel-default
-        .panel-heading
-          %h2 Documents
-          %ol
-            %li Upload
-            %li Comment
-            %li Revise
-          %a.button.btn.btn-default.btn-lg{:type => "button", :href => "/pages/documents"} Document
-    .col-md-4
-      =image_tag('image.jpg', :class => 'img-responsive')
-      .panel.panel-default
-        .panel-heading
-          %h2 Comments
-          %ol
-            %li Comments on task and documents
-            %li Get email notificationsch
-          %a.button.btn.btn-default.btn-lg{:type => "button", :href => '/pages/comments' } Comments
+  .row
+    - @columns.each do |title, description|
+      .col-md-4
+        =image_tag('image.jpg', :class => 'img-responsive')
+        .panel.panel-default
+          .panel-heading
+            %h2.panel-title
+              = title
+            .panel-body
+            - if description.length <= 1
+              %p
+                = description[0]
+            -else
+              %ul
+                - description.each do |description|
+                  %li
+                    = description
+            %h2.panel-footer
+              %a.button.btn.btn-default.btn-lg{:type => "button", :href => "/pages/task"} BLAH
 
   %hr/
   %footer
