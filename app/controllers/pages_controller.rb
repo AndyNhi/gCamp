@@ -6,26 +6,7 @@ def index
     Documents: ['Upload', 'Comment', 'Revise'],
     Comments: ['Comments on task and documents','Get email notifications']
     }
-
   render :index
-
-
-end
-
-def about
-end
-
-def terms
-end
-
-
-def task
-end
-
-def documents
-end
-
-def comments
 end
 
 end
