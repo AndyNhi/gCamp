@@ -21,10 +21,20 @@
                 - description.each do |description|
                   %li
                     = description
-              -# %a.button.btn.btn-default.btn-lg{:type => "button", :href => "/pages/task"}
 
 
-%h1=Time.now
+
+  %ul
+  - @quote_author_array.map do |author, quote|
+    %blockquote
+      %p
+        = quote.join
+      %footer
+        = author
+
+
+
+
 
 /
   Bootstrap core JavaScript
