@@ -26,7 +26,7 @@
 
   %ul
   - @quote_author_array.map do |author, quote|
-    %blockquote
+    %blockquote.remove_hover_blockquote
       %p
         = quote.join
       %footer
