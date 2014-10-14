@@ -28,7 +28,7 @@
   - @random_quote_generation.map do |author, quote|
     %blockquote.remove_hover_blockquote
       %p
-        = quote.join
+        = quote.sample
       %footer
         = author
 
