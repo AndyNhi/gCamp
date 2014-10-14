@@ -20,8 +20,6 @@ def index
     ['George Bernard Shaw',['Dancing: the vertical expression of a horizontal desire legalized by music. ']],
     ]
 
-  # quote_author_array = [['a',['1','2']],['b',['1','2']],['c',['1','2']]]
-
   @random_quote_generation = quote_author_array.sample(3)
 
   render :index
