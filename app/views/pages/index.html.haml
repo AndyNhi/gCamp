@@ -22,16 +22,21 @@
                   %li
                     = description
 
-
-
-  %ul
-  - @random_quote_generation.map do |author, quote|
+  - @quote_random_array.each do |quote|
     %blockquote.remove_hover_blockquote
       %p
-        = quote.sample
+        = quote.author
       %footer
-        = author
+        = quote.quote_text
 
+  -# %ul
+  -# - @random_quote_generation.map do |author, quote|
+  -#   %blockquote.remove_hover_blockquote
+  -#     %p
+  -#       = quote.sample
+  -#     %footer
+  -#       = author
+  -#
 
 
 

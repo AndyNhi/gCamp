@@ -20,10 +20,16 @@
     = yield
 
 .footerline
-
 .container
   %footer
     %ul.footer_bar
+      &nbsp;
       %li.inline= link_to 'About', about_path, :class => 'footer_li'
+      &nbsp;
+      |
+      &nbsp;
       %li.inline= link_to 'Terms', term_path, :class => 'footer_li'
+      &nbsp;
+      |
+      &nbsp;
       %li.inline= link_to 'FAQ', faq_path, :class => 'footer_li'
