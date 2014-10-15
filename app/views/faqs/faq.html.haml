@@ -6,9 +6,9 @@
         %dl.dl-horizontal
         - @faq_questions.each do |fq|
           %dt
-            = fq.faq_question
+            = fq.question
           %dd
-            = fq.faq_answer
+            = fq.answer
           %p
 
-    .h2= Faq.new.all
+    .h2= Faq.all
