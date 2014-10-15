@@ -37,6 +37,7 @@
 .footer_bar {
   list-style-type: none;
   text-align: left;
+  padding-left: 0px;
 }
 
 .footer_li {
@@ -51,4 +52,10 @@
 
 .remove_hover_blockquote {
   border-left: 0px;
+}
+
+
+.footerline {
+  border-top: solid 1px #000;
+  padding-bottom: 10px;
 }
