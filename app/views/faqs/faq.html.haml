@@ -12,12 +12,13 @@
         -#   %p
         -#
         %dl.dl-horizontal
-        - Faq.all.each do |qa|
+        - @faq_questions.each do |qa|
           %dt
             = qa.question
           %dd
             = qa.answer
           %p
+
 
 
 -# New way using the all method that calls on the class collector method
