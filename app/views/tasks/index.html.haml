@@ -1,7 +1,7 @@
 .jumbotron
   %h1 Listing tasks
 
-  %table
+  %table.table
     %tr
       %th Title
       %th Description
@@ -20,3 +20,6 @@
   %br
 
   = link_to 'New Task', new_task_path
+
+  %br
+  = link_to 'Download All Task - CSV List', tasks_path(format: :csv)

@@ -1,0 +1,4 @@
+- headers = ['Title', 'Description']
+= CSV.generate_line headers
+- @tasks.each do |task|
+  = CSV.generate_line([task.title, task.description])
