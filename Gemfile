@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'haml', '~> 4.0.5'
+gem 'haml-rails', '~> 0.5.3'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'

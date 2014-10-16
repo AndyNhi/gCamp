@@ -1,33 +1,31 @@
-/ JUMBOTRON
-.container
-  .jumbotron
-    %h1 gCamp!
-    %p Your life organized.
+.jumbotron
+  %h1 gCamp!
+  %p Your life organized.
 
-  .row
-    - @columns.each do |title, description|
-      .col-md-4
-        =image_tag('image.jpg', :class => 'img-responsive')
-        .panel.panel-default
-          .panel-heading
-            %h2.panel-title
-              = title
-            .panel-body
-            - if description.length <= 1
-              %p
-                = description[0]
-            -else
-              %ul
-                - description.each do |description|
-                  %li
-                    = description
+.row
+  - @columns.each do |title, description|
+    .col-md-4
+      =image_tag('image.jpg', :class => 'img-responsive')
+      .panel.panel-default
+        .panel-heading
+          %h2.panel-title
+            = title
+          .panel-body
+          - if description.length <= 1
+            %p
+              = description[0]
+          -else
+            %ul
+              - description.each do |description|
+                %li
+                  = description
 
-  - @quote_random_array.each do |quote|
-    %blockquote.remove_hover_blockquote
-      %p
-        = quote.author
-      %footer
-        = quote.quote_text
+- @quote_random_array.each do |quote|
+  %blockquote.remove_hover_blockquote
+    %p
+      = quote.author
+    %footer
+      = quote.quote_text
 
   -# %ul
   -# - @random_quote_generation.map do |author, quote|

@@ -1,23 +1,22 @@
-.container
-  .jumbotron.white_jumbotron
-    %h1 Frequently Asked Questions
-    .row
-      .col-md-12
-        %dl.dl-horizontal
-        -# - @faq_questions.each do |fq|
-        -#   %dt
-        -#     = fq.question
-        -#   %dd
-        -#     = fq.answer
-        -#   %p
-        -#
-        %dl.dl-horizontal
-        - @faq_questions.each do |qa|
-          %dt
-            = qa.question
-          %dd
-            = qa.answer
-          %p
+.jumbotron.white_jumbotron
+  %h1 Frequently Asked Questions
+  .row
+    .col-md-12
+      %dl.dl-horizontal
+      -# - @faq_questions.each do |fq|
+      -#   %dt
+      -#     = fq.question
+      -#   %dd
+      -#     = fq.answer
+      -#   %p
+      -#
+      %dl.dl-horizontal
+      - @faq_questions.each do |qa|
+        %dt
+          = qa.question
+        %dd
+          = qa.answer
+        %p
 
 
 
