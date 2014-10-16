@@ -4,11 +4,20 @@
     .row
       .col-md-12
         %dl.dl-horizontal
-        - @faq_questions.each do |fq|
+        -# - @faq_questions.each do |fq|
+        -#   %dt
+        -#     = fq.question
+        -#   %dd
+        -#     = fq.answer
+        -#   %p
+        -#
+        %dl.dl-horizontal
+        - Faq.all.each do |qa|
           %dt
-            = fq.question
+            = qa.question
           %dd
-            = fq.answer
+            = qa.answer
           %p
 
-    .h6= Faq.all
+
+-# New way using the all method that calls on the class collector method
