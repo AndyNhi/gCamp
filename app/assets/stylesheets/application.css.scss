@@ -18,6 +18,23 @@
  @import "bootstrap";
 
 
+// index view
+
+.white {
+  background-color: white;
+}
+
+.background_color {
+  background-color: grey;
+}
+
+.jumbo_adj {
+  padding-left: 10px;
+}
+
+
+
+
 .navcolor  {
   background-color: black;
 }
@@ -46,12 +63,12 @@
 
 
 .footer_adjustment {
-  margin-left: -5%;
+  margin-left: -4%;
 }
 
 .footerline {
   border-top: solid 1px #000;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .right {

@@ -16,13 +16,13 @@
             %span.icon-bar
         = link_to 'gCamp', root_path, :class => 'navbar-brand'
 
-  %body
-  .container
+  %body.background_color
+  .container.white
     = yield
 
   %footer
-  .footerline
-  .container
+  .container.white
+    .footerline
     %ul.footer_adjustment
       &nbsp;
       %li.inline= link_to_unless_current 'About', about_path, :class => 'footer_li'
