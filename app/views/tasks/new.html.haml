@@ -1,6 +1,10 @@
-.jumbotron  
+.jumbotron
   %h1 New task
+
+  %ol.breadcrumb
+    %li= link_to('Task', tasks_path)
+    %li.active= 'New Task'
 
   = render 'form'
 
-  = link_to 'Back', tasks_path
+  = link_to 'Back', tasks_path, class: 'btn btn-default'

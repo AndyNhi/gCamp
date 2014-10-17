@@ -18,7 +18,5 @@
         %td= link_to 'Destroy', task, class: 'btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br
-
-
   %br
-  = link_to 'Download All Task - CSV List', tasks_path(format: :csv)
+  = link_to 'Download CSV', tasks_path(format: :csv), class: 'btn btn-default'

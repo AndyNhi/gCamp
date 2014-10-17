@@ -11,6 +11,6 @@
     %b Description:
     = @task.description
 
-  = link_to 'Edit', edit_task_path(@task)
-  \|
-  = link_to 'Back', tasks_path
+  = link_to 'Edit', edit_task_path(@task), class: 'btn btn-default'
+  
+  = link_to 'Back', tasks_path, class: 'btn btn-default'

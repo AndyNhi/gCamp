@@ -1,8 +1,11 @@
 .jumbotron
   %h1 Editing task
+  %ol.breadcrumb
+    %li= link_to('Task', tasks_path)
+    %li.active= 'Edit Task'
 
   = render 'form'
 
-  = link_to 'Show', @task
-  \|
-  = link_to 'Back', tasks_path
+  = link_to 'Show', @task, class: 'btn'
+
+  = link_to 'Back', tasks_path, class: 'btn'
