@@ -3,7 +3,7 @@
   .row
     .col-md-12
       %dl.dl-horizontal
-      - @faq_questions.each do |qa|
+      - Faq.all.each do |qa|
         %dt
           = qa.question
         %dd
