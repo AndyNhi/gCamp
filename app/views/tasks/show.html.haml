@@ -1,6 +1,9 @@
-.jumbotron
-  %p#notice= notice
+- if notice.nil?
+  %p.show-margin
+- else
+  %p.show-margin.alert.alert-success= notice
 
+.jumbotron
   %p
     %b Title:
     = @task.title
