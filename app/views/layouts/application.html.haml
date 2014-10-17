@@ -20,10 +20,10 @@
   .container
     = yield
 
-.footerline
-.container
   %footer
-    %ul.footer_bar
+  .footerline
+  .container
+    %ul.footer_adjustment
       &nbsp;
       %li.inline= link_to_unless_current 'About', about_path, :class => 'footer_li'
       &nbsp;

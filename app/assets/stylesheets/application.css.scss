@@ -34,16 +34,6 @@
   background-color: white;
 }
 
-.footer_bar {
-  list-style-type: none;
-  text-align: left;
-  padding-left: 0px;
-}
-
-.footer_li {
-
-  text-decoration: none !important;
-}
 
 .inline {
   display: inline;
@@ -54,6 +44,10 @@
   border-left: 0px;
 }
 
+
+.footer_adjustment {
+  margin-left: -5%;
+}
 
 .footerline {
   border-top: solid 1px #000;
@@ -74,5 +68,5 @@
 }
 
 .ghost {
-  
+
 }
