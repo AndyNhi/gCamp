@@ -37,10 +37,5 @@ def index
   #
   # quote_array = [quote1, quote2, quote3]
   # @quote_random_array = quote_array.sample(3)
-
-
 end
-
-
-
 end
