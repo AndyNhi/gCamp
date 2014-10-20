@@ -29,9 +29,10 @@
 }
 
 .jumbo_adj {
-  padding-left: 10px;
+  padding-left: 0px;
 }
 
+///
 
 .nav_adjustment {
   margin-bottom: 20px;
@@ -84,4 +85,14 @@
 
 .padding_adjustment {
   padding-top: 6%;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.center_image {
+
 }
