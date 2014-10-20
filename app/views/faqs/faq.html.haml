@@ -1,11 +1,11 @@
-.jumbotron.white_jumbotron
-  %h1 Frequently Asked Questions
-  .row
-    .col-md-12
-      %dl.dl-horizontal
-      - Faq.all.each do |qa|
-        %dt
-          = qa.question
-        %dd
-          = qa.answer
-        %p
+%h1 Frequently Asked Questions
+.row
+  .col-md-12
+    %dl.dl-horizontal
+    - Faq.all.each do |qa|
+      %dt
+        = qa.question
+      %dd
+        = qa.answer
+      %p
+%br
