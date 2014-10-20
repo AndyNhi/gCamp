@@ -13,5 +13,13 @@
     .field.form-group
       = f.label :description
       = f.text_field :description, :class => "form-control"
+    .field.form-group
+      = f.label :due_date
+      = f.date_field :due_date, :class => "form-control"
+      .field.form-group
+      - unless current_page?(new_task_path)
+        = f.label :complete
+        = f.check_box :complete, :class => "form-control"
+
     .actions
       = f.submit 'Submit', :class => 'btn btn-default'
