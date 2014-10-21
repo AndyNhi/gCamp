@@ -15,30 +15,21 @@ class TasksController < ApplicationController
 
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
   def show
     @show_page = true
   end
 
-  # GET /tasks/new
   def new
     @new_page = true
     @task = Task.new
   end
 
-  # GET /tasks/1/edit
   def edit
     @edit_page = true
   end
 
-  # POST /tasks
-  # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
-
-
 
     respond_to do |format|
       if @task.save
@@ -51,8 +42,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
       if @task.update(task_params)

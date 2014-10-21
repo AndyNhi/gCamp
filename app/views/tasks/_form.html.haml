@@ -13,11 +13,10 @@
     .field.form-group
       = f.label :due_date, :class => 'col-sm-2 control-label'
       = f.date_field :due_date, :class => "form-control"
+    - unless current_page?(new_task_path)
       .field.form-group
-      - unless current_page?(new_task_path)
         = f.label :complete, :class => 'col-sm-2 control-label'
         = f.check_box :complete, :class => "form-control"
-
     .form-group
       - if @new_page
         = f.submit :class => 'col-sm-offset-2 btn btn-primary'

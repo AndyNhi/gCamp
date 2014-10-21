@@ -9,13 +9,22 @@
 
 %table.table
   %tr
-    %th
-      %h4 Description
+    %th Description
+    %th Due Date
+    %th Complete Task?
     %th
 
   - @tasks.each do |task|
     %tr
       %td= task.description
+      - if task.due_date.nil?
+        %td Infinite
+      - else
+        %td= task.due_date.strftime("%B %e, %Y")
+      %td
+        = form_for(task, html: {class: "form-horizontal"}) do |f|
+          = f.check_box :complete
+          = f.submit :class => 'btn btn-default btn-sm'
       %td
         .pull-right
           = link_to 'Show', task, class: 'btn btn-primary'
