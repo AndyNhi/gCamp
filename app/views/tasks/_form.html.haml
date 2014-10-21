@@ -8,18 +8,18 @@
             %li= msg
 
     .field.form-group
-      = f.label :description
+      = f.label :description, :class => 'col-sm-2 control-label'
       = f.text_field :description, :class => "form-control"
     .field.form-group
-      = f.label :due_date
+      = f.label :due_date, :class => 'col-sm-2 control-label'
       = f.date_field :due_date, :class => "form-control"
       .field.form-group
       - unless current_page?(new_task_path)
-        = f.label :complete
+        = f.label :complete, :class => 'col-sm-2 control-label'
         = f.check_box :complete, :class => "form-control"
 
-    .field
-    - if @new_page
-      = f.submit 'Create', :class => 'btn btn-primary actions form-group'
-    - elsif @edit_page
-      = f.submit 'Edit', :class => 'btn btn-primary actions form-group'
+    .form-group
+      - if @new_page
+        = f.submit :class => 'col-sm-offset-2 btn btn-primary'
+      - elsif @edit_page
+        = f.submit :class => 'col-sm-offset-2 btn btn-primary'

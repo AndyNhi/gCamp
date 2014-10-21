@@ -19,13 +19,6 @@
               - description.each do |description|
                 %li
                   = description
--#
--# - @quote_random_array.each do |quote|
--#   %blockquote.remove_hover_blockquote
--#     %p
--#       = quote.author
--#     %footer
--#       = quote.quote_text
 
 - @quote_random_array.each do |author, quote|
   %blockquote.remove_hover_blockquote
