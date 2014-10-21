@@ -2,10 +2,20 @@
   %p.alert.alert-success= notice
 
 .jumbotron
-  %p
-    %b Description:
-    = @task.description
+  %table
+    %tr
+      %th Description: &nbsp;
+      %td= @task.description
+    %tr
+      %th Completion: &nbsp;
+      %td= @task.complete
+    %tr
+      %th Due Date: &nbsp;
+      - if @task.due_date.nil?
+        %td Infinite
+      - else
+        %td= @task.due_date.strftime("%B %e, %Y")
 
-  = link_to 'Edit', edit_task_path(@task), class: 'btn btn-default'
+= link_to 'Edit', edit_task_path(@task), class: 'btn btn-default'
 
-  = link_to 'Back', tasks_path, class: 'btn btn-default'
+= link_to 'Back', tasks_path, class: 'btn btn-default'
