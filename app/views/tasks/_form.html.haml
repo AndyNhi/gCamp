@@ -18,5 +18,8 @@
         = f.label :complete
         = f.check_box :complete, :class => "form-control"
 
-    .actions
-      = f.submit 'Submit', :class => 'btn btn-default'
+    .field
+    - if @new_page
+      = f.submit 'Create', :class => 'btn btn-default actions form-group'
+    - elsif @edit_page
+      = f.submit 'Edit', :class => 'btn btn-default actions form-group'

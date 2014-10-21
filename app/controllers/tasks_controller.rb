@@ -18,15 +18,18 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @show_page = true
   end
 
   # GET /tasks/new
   def new
+    @new_page = true
     @task = Task.new
   end
 
   # GET /tasks/1/edit
   def edit
+    @edit_page = true
   end
 
   # POST /tasks
