@@ -1,7 +1,7 @@
 class FaqsController < ApplicationController
 
   def faq
-    @quotes = Faq.all
+    @faqs = Faq.all
   end
 
 end
