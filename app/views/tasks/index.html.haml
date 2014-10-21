@@ -3,7 +3,6 @@
   .btn.btn-default.pull-right= link_to 'Create Task', new_task_path
   %table.table
     %tr
-      %th Title
       %th Description
       %th
       %th
@@ -11,9 +10,7 @@
 
     - @tasks.each do |task|
       %tr
-        %td= task.title
         %td= task.description
-        -# %td= task.due_date.to_formatted_s(:long_ordinal)
         %td= task.complete
         %td= link_to 'Show', task, class: 'btn btn-primary'
         %td= link_to 'Edit', edit_task_path(task), class: 'btn btn-success'
