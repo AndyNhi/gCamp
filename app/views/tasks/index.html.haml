@@ -3,13 +3,13 @@
 
 .page-header
   .pull-right
-    = link_to 'Create Task', new_task_path, :class => 'btn btn-default'
+    = link_to 'Create Task', new_task_path, :class => 'btn btn-primary'
     = link_to 'Download CSV', tasks_path(format: :csv), class: 'btn btn-default'
   %h1 Listing Task
 
 %table.table
   %tr
-    %th Description 
+    %th Description
     %th Due Date
     %th Complete Task?
     %th
