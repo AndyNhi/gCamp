@@ -1,8 +1,12 @@
 - unless notice.nil?
   %p.alert.alert-success= notice
 
+%ol.breadcrumb
+  %li= link_to('Task', tasks_path)
+  %li.active= 'Show Task'
+
 .jumbotron
-  %table
+  %table.table-condensed
     %tr
       %th Description: &nbsp;
       %td= @task.description
@@ -15,8 +19,8 @@
         %td Infinite
       - else
         %td= @task.due_date.strftime("%B %e, %Y")
-
-  %br
-  = link_to 'Edit', edit_task_path(@task)
-  |
-  = link_to 'Back', tasks_path
+    %tr
+      %th
+        = link_to 'Edit', edit_task_path(@task)
+        = "|"
+        = link_to 'Back', tasks_path
