@@ -21,17 +21,11 @@
     .padding_adjustment
     = yield
 
-  %footer
   .container.white
     .footerline
-    %ul.footer_adjustment
-      &nbsp;
-      %li.inline= link_to_unless_current 'About', about_path, :class => 'footer_li'
-      &nbsp;
-      |
-      &nbsp;
-      %li.inline= link_to_unless_current 'Terms', term_path, :class => 'footer_li'
-      &nbsp;
-      |
-      &nbsp;
-      %li.inline= link_to_unless_current 'FAQ', faq_path, :class => 'footer_li'
+      %footer
+        = link_to_unless_current 'About', about_path, :class => 'footer-line'
+        &nbsp; 
+        = link_to_unless_current 'Terms', term_path
+        &nbsp;
+        = link_to_unless_current 'FAQ', faq_path
