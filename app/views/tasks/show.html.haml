@@ -16,6 +16,7 @@
       - else
         %td= @task.due_date.strftime("%B %e, %Y")
 
-= link_to 'Edit', edit_task_path(@task), class: 'btn btn-default'
-
-= link_to 'Back', tasks_path, class: 'btn btn-default'
+  %br
+  = link_to 'Edit', edit_task_path(@task)
+  |
+  = link_to 'Back', tasks_path
