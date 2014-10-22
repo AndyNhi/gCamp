@@ -21,35 +21,14 @@ body {
   background-color: grey;
 }
 
-// index view
-
-.white {
-  background-color: white;
-}
-
-
-.center {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-// about view
-
-.about_text {
-  text-align: center;
+blockquote {
+  border-left: 0px;
 }
 
 // nav bar
 
 .padding_adjustment {
   padding-top: 6%;
-}
-
-// faq view
-
-blockquote {
-  border-left: 0px;
 }
 
 // footer
