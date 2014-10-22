@@ -6,7 +6,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-    .navbar.navbar-inverse.nav_adjustment.navbar-fixed-top{:role => "navigation"}
+    .navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
       .container
         .navbar-header
           %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -16,16 +16,15 @@
             %span.icon-bar
         = link_to 'gCamp', root_path, :class => 'navbar-brand'
 
-  %body.background_color
+  %body
   .container.white
     .padding_adjustment
     = yield
 
-  .container.white
     .footerline
       %footer
         = link_to_unless_current 'About', about_path, :class => 'footer-line'
-        &nbsp; 
+        &nbsp;
         = link_to_unless_current 'Terms', term_path
         &nbsp;
         = link_to_unless_current 'FAQ', faq_path

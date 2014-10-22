@@ -17,6 +17,9 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+body {
+  background-color: grey;
+}
 
 // index view
 
@@ -24,9 +27,6 @@
   background-color: white;
 }
 
-.background_color {
-  background-color: grey;
-}
 
 .center {
     margin-left: auto;
@@ -42,32 +42,24 @@
 
 // nav bar
 
-.nav_adjustment {
-  margin-bottom: 20px;
-}
-
 .padding_adjustment {
   padding-top: 6%;
 }
 
 // faq view
 
-.remove_hover_blockquote {
+blockquote {
   border-left: 0px;
 }
 
-
 // footer
-
-.inline {
-  display: inline;
-}
 
 .footer_adjustment {
   margin-left: -4%;
 }
 
 .footerline {
-  border-top: solid 1px #000;
-  padding-bottom: 5px;
+  border-top: solid 1px black;
+  padding-bottom: 6px;
+  padding-top: 5px;
 }
