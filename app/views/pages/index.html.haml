@@ -20,10 +20,9 @@
                 %li
                   = description
 
-- @quote_random_array.each do |author, quote|
+- @qas.each do |hash|
   %blockquote
     %p
-    - quote.each do |q|
-      = q
+      = hash.quote
     %footer
-      = author
+      = hash.author
