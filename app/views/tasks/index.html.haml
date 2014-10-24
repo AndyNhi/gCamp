@@ -8,7 +8,10 @@
     = link_to 'Incomplete', tasks_path(status: 'incomplete')
     = link_to 'Create Task', new_task_path, :class => 'btn btn-primary'
     -# = link_to 'Download CSV', tasks_path(format: :csv, status: params[:status]), class: 'btn btn-default'
-    = link_to 'Download CSV', tasks_path(format: :csv), class: 'btn btn-default'
+    - if (params[:status]) == 'incomplete'
+      = link_to 'Download CSV', tasks_path(format: :csv, status: 'incomplete'), class: 'btn btn-default'
+    - else
+      = link_to 'Download CSV', tasks_path(format: :csv), class: 'btn btn-default'
   %h1 Listing Task
 
 %table.table

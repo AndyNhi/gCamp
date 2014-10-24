@@ -20,4 +20,6 @@ end
 group :development do
   gem 'better_errors', '~> 2.0.0'
   gem 'spring'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end

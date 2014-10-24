@@ -3,9 +3,15 @@ class TasksController < ApplicationController
 
   def index
 
-
     if params[:status] == 'incomplete'
-      @tasks = Task.where(complete: nil)
+      @tasks = Task.where("complete != true")
+      respond_to do |format|
+        format.html
+        format.csv do
+          headers['Content-Disposition'] = "attachment; filename=\"task-list\""
+          headers['Content-Type'] ||= 'text/csv'
+        end
+      end
     else
       @tasks = Task.all
       respond_to do |format|
@@ -14,9 +20,7 @@ class TasksController < ApplicationController
           headers['Content-Disposition'] = "attachment; filename=\"task-list\""
           headers['Content-Type'] ||= 'text/csv'
         end
-
     end
-
   end
 
   end
