@@ -2,13 +2,21 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
-    respond_to do |format|
-    format.html
-    format.csv do
-      headers['Content-Disposition'] = "attachment; filename=\"task-list\""
-      headers['Content-Type'] ||= 'text/csv'
+
+
+    if params[:status] == 'incomplete'
+      @tasks = Task.where(complete: nil)
+    else
+      @tasks = Task.all
+      respond_to do |format|
+        format.html
+        format.csv do
+          headers['Content-Disposition'] = "attachment; filename=\"task-list\""
+          headers['Content-Type'] ||= 'text/csv'
+        end
+
     end
+
   end
 
   end
