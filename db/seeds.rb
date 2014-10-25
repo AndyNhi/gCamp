@@ -26,3 +26,13 @@ faq3 = Faq.create(
                                 functionality. Its its going to blow your mind.Organization is only
                                 (well, will only). be click away. Amazing'
                  )
+
+
+
+Task.delete_all
+
+10.times do
+  Task.create description: Faker::Lorem.sentence,
+              complete: [true, false, false, false].sample,
+              due_date: Faker::Time.forward(21)
+end
