@@ -8,12 +8,7 @@ class PagesController < ApplicationController
       Comments: ['Comments on task and documents','Get email notifications']
       }
 
-    @qas = 30.times.map do
-      {
-        quote: Faker::Lorem.sentence,
-        author: Faker::Name.first_name
-      }
-    end
-
+    @qas = Page.all
+    
   end
 end
