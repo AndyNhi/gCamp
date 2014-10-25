@@ -13,7 +13,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem "pg"
 gem 'faker', '~> 1.4.3'
-
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
 
 group :production do
   gem "rails_12factor"

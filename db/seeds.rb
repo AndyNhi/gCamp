@@ -7,7 +7,7 @@ end
 
 Task.delete_all
 
-10.times do
+60.times do
   Task.create description: Faker::Lorem.sentence,
               complete: [true, false, false, false].sample,
               due_date: Faker::Time.forward(21)
