@@ -20,9 +20,9 @@
                 %li
                   = description
 
-- @qas.each do |hash|
+- @qas.sample(3).each do |qa|
   %blockquote
     %p
-      = hash.quote
+      = qa[:quote]
     %footer
-      = hash.author
+      = qa[:author]
