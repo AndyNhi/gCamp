@@ -11,9 +11,6 @@ class TasksController < ApplicationController
         csv(@tasks)
     end
 
-
-
-
   end
 
   def csv(file)
