@@ -19,6 +19,8 @@
   %body
   .container.white
     .padding_adjustment
+    - unless notice.nil?
+      %p.alert.alert-success= notice
     = yield
 
     .footerline
