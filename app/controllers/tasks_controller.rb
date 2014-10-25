@@ -6,6 +6,12 @@ class TasksController < ApplicationController
     if params[:status] == 'incomplete'
       @tasks = Task.where(complete: false)
         csv(@tasks)
+    elsif params[:sort] == 'description'
+      @tasks = Task.all.order(:description)
+    elsif params[:sort] == 'due date'
+      @tasks = Task.all.order(:due_date)
+    elsif params[:sort] == 'complete'
+      @tasks = Task.all.order(:complete)
     else
       @tasks = Task.all
         csv(@tasks)
@@ -13,16 +19,6 @@ class TasksController < ApplicationController
 
   end
 
-  def csv(file)
-          file
-          respond_to do |format|
-            format.html
-            format.csv do
-            headers['Content-Disposition'] = "attachment; filename=\"task-list\""
-            headers['Content-Type'] ||= 'text/csv'
-        end
-     end
-  end
 
   def show
     @show_page = true
@@ -72,6 +68,17 @@ class TasksController < ApplicationController
   end
 
   private
+    def csv(file)
+                  file
+                  respond_to do |format|
+                    format.html
+                    format.csv do
+                                headers['Content-Disposition'] = "attachment; filename=\"task-list\""
+                                headers['Content-Type'] ||= 'text/csv'
+                               end
+                             end
+    end
+
     def set_task
       @task = Task.find(params[:id])
     end

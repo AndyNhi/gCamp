@@ -13,9 +13,9 @@
 
 %table.table
   %tr
-    %th Description
-    %th Due Date
-    %th Complete Task?
+    %th= link_to 'Description', tasks_path(sort: 'description')
+    %th= link_to 'Due Date', tasks_path(sort: 'due date')
+    %th= link_to 'Complete Task?', tasks_path(sort: 'complete')
     %th
 
   - @tasks.each do |task|
