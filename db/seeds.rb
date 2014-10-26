@@ -13,9 +13,9 @@ Task.delete_all
               due_date: Faker::Time.forward(21)
 end
 
-Page.delete_all
+Quote.delete_all
 
 10.times do
-  Page.create quote: Faker::Lorem.sentence,
-             author: Faker::Name.first_name
+  Quote.create quote_line: Faker::Lorem.sentence,
+                   author: Faker::Name.first_name
 end

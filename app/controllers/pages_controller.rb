@@ -8,7 +8,7 @@ class PagesController < ApplicationController
       Comments: ['Comments on task and documents','Get email notifications']
       }
 
-    @qas = Page.all
-    
+    @qas = Quote.all
+
   end
 end
