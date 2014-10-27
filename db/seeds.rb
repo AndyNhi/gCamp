@@ -19,3 +19,12 @@ Quote.delete_all
   Quote.create quote_line: Faker::Lorem.sentence,
                    author: Faker::Name.first_name
 end
+
+
+User.delete_all
+
+10.times do
+  User.create first_name: Faker::Name.first_name,
+               last_name: Faker::Name.last_name,
+           email_address: Faker::Internet.email
+end
