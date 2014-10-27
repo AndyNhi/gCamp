@@ -3,22 +3,16 @@ class TasksController < ApplicationController
 
   def index
 
-    if params[:status] == 'incomplete'
-      @tasks = Task.where(complete: false)
-        csv(@tasks)
-    elsif params[:sort] == 'description'
-      @tasks = Task.all.order(:description)
-    elsif params[:sort] == 'due date'
-      @tasks = Task.all.order(:due_date)
-    elsif params[:sort] == 'complete'
-      @tasks = Task.all.order(:complete)
+    if params[:status] == "all" || params[:status] == ""
+      @tasks = Task.order(params[:sort])
+    elsif params[:status] == "incomplete"
+      @tasks = Task.where(complete: false).order(params[:sort])
     else
-      @tasks = Task.all
-        csv(@tasks)
+      @tasks = Task.where(complete: false).order(params[:sort])
     end
+    csv(@tasks)
 
   end
-
 
   def show
     @show_page = true
