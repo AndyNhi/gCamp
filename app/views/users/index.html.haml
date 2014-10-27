@@ -1,0 +1,21 @@
+
+= link_to('Create User', new_user_path)
+
+%h1 Users List
+
+%table.table
+  %tr
+    %th First Name
+    %th Last Name
+    %th Email Address
+    %th
+
+  - @users.each do |user|
+    %tr
+      %td= user.first_name
+      %td= user.last_name
+      %td= user.email_address
+      %td
+        = link_to 'Show', user, class: 'btn btn-primary'
+        = link_to 'Edit', edit_user_path(user), class: 'btn btn-success'
+        = link_to 'Destroy', user, class: 'btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }

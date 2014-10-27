@@ -1,0 +1,22 @@
+%ol.breadcrumb
+  %li= link_to('Users', users_path)
+  %li.active= 'User Info'
+
+.jumbotron
+  %table.table-condensed
+    %tr
+      %th First Name: &nbsp;
+      %td= @user.first_name
+    %tr
+      %th Last Name: &nbsp;
+      %td= @user.last_name
+    %tr
+      %th Email Address: &nbsp;
+      %td= @user.email_address
+
+
+    %tr
+      %th
+        = link_to 'Edit', edit_user_path(@user)
+        = "|"
+        = link_to 'Back', users_path
