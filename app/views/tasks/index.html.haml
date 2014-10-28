@@ -19,7 +19,7 @@
     %th
 
   - @tasks.each do |task|
-    %tr
+    %tr{class: ("danger" if task.due_soon?)}
       %td= task.description
       - if task.due_date.nil?
         %td Infinite
