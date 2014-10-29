@@ -1,0 +1,19 @@
+%h1 Project
+.jumbotron
+  .table
+    %table
+      %thead
+        %th Description
+        %th
+        %th
+      %tbody
+        %tr
+          %td
+            = @project.description
+          .pull-right
+            = link_to('Edit', edit_project_path, class: 'btn btn-primary')
+            = link_to('Destroy', @project, :method => :delete, class: 'btn btn-danger')
+
+
+
+= link_to('Projects Page', projects_path, class: 'btn btn-default')

@@ -1,0 +1,9 @@
+.jumbotron
+  = form_for(@project) do |f|
+    .form-group
+      = f.label :description, :class => 'col-sm-2 control-label'
+      .col-sm-5
+        = f.text_field :description, :class => "form-control"
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = f.submit 'Submit', class: 'col-sm-2 btn btn-default'

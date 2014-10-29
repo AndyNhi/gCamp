@@ -1,0 +1,13 @@
+
+.page-header
+  .pull-right
+    = link_to('Create Project', new_project_path, class: 'btn btn-default')
+  %h1 Project Index Page
+
+%table.table
+  %thead
+    %th Description
+  %tbody
+    - @projects.each do |proj|
+      %tr
+        %td= link_to(proj.description, project_path(proj))
