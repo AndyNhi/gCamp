@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       @user = User.new(params.require(:user).permit(:first_name, :last_name, :email_address))
       respond_to do |format|
         if @user.save
-          format.html { redirect_to @user, notice: 'Task was successfully created.'}
+          format.html { redirect_to users_path, notice: 'Task was successfully created.'}
           format.json { render :show, status: :created, location: @user }
         else
           format.html { render :new }
