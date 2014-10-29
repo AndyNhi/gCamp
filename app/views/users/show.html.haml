@@ -12,7 +12,7 @@
       %td= @user.last_name
     %tr
       %th Email Address: &nbsp;
-      %td= @user.email_address
+      %td= mail_to(@user.email_address)
 
 
     %tr

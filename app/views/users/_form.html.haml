@@ -18,3 +18,8 @@
     .form-group
       .col-sm-offset-2.col-sm-10
         = f.submit :class => 'btn btn-primary'
+
+    - if @user.id?
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = link_to 'Destroy', @user,class: 'btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
