@@ -28,3 +28,10 @@ User.delete_all
                last_name: Faker::Name.last_name,
            email_address: Faker::Internet.email
 end
+
+
+Project.delete_all
+
+10.times do
+    Project.create description: Faker::App.name
+end
