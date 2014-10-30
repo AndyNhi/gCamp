@@ -22,4 +22,5 @@
     - if @user.id?
       .form-group
         .col-sm-offset-2.col-sm-10
-          = link_to 'Destroy', @user,class: 'btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+          .well
+            = link_to 'Delete User', @user,class: 'col-sm-offset-3 btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
