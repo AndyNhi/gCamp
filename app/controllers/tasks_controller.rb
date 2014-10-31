@@ -4,11 +4,11 @@ class TasksController < ApplicationController
   def index
 
     if params[:status] == "all" || params[:status] == ""
-      @tasks = Task.order(params[:sort])
+      @tasks = Task.order(params[:sort]).page(params[:page])
     elsif params[:status] == "incomplete"
-      @tasks = Task.where(complete: false).order(params[:sort])
+      @tasks = Task.where(complete: false).order(params[:sort]).page(params[:page])
     else
-      @tasks = Task.where(complete: false).order(params[:sort])
+      @tasks = Task.where(complete: false).order(params[:sort]).page(params[:page])
     end
     csv(@tasks)
 

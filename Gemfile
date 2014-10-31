@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem "pg"
 gem 'faker', '~> 1.4.3'
 gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 group :production do
   gem "rails_12factor"
