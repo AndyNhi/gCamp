@@ -4,4 +4,5 @@ class FaqsController < ApplicationController
     @faqs = Faq.all
   end
 
+
 end

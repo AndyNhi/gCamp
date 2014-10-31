@@ -32,6 +32,6 @@ end
 
 Project.delete_all
 
-10.times do
+100.times do
     Project.create description: Faker::App.name
 end

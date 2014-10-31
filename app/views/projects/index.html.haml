@@ -11,3 +11,7 @@
     - @projects.each do |proj|
       %tr
         %td= link_to(proj.description, project_path(proj))
+
+
+
+= paginate @projects

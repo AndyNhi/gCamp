@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
+    @projects = Project.page(params[:page])
   end
 
   def show
@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(params.require(:project).permit(:description))
+    @project = Project.new(:project)
     @project.save
     redirect_to projects_path
   end
