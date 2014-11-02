@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(:project)
+    @project = Project.new(params.require(:project).permit(:description))
     @project.save
     redirect_to projects_path
   end
@@ -25,7 +25,8 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @project.update(params.require(:project).permit(:description))
-    redirect_to projects_path
+    redirect_to projects_path, notice: 'Task was successfully updated.' 
+
   end
 
 
