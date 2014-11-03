@@ -1,6 +1,10 @@
 .jumbotron
   %h1 gCamp!
   %p Your life organized.
+  %p
+    -if current_user
+      = "Welcome " + current_user.first_name + "!"
+
 
 .row
   - @columns.each do |title, description|

@@ -22,10 +22,11 @@ class UsersController < ApplicationController
     end
 
     def create
-      @user = User.new(params.require(:user).permit(:first_name, :last_name, :email_address))
+      @user = User.new(params.require(:user).permit(:first_name, :last_name, :email_address, :password, :password_confirmation))
       respond_to do |format|
         if @user.save
-          format.html { redirect_to users_path, notice: 'Task was successfully created.'}
+          session[:user_id] = @user.id
+          format.html { redirect_to root_path, notice: 'User was successfully created.'}
           format.json { render :show, status: :created, location: @user }
         else
           format.html { render :new }
@@ -36,8 +37,8 @@ class UsersController < ApplicationController
 
     def update
       respond_to do |format|
-        if @user.update(params.require(:user).permit(:first_name, :last_name, :email_address))
-          format.html { redirect_to users_path, notice: 'Task was successfully updated.' }
+        if @user.update(params.require(:user).permit(:first_name, :last_name, :email_address, :password, :password_confirmation))
+          format.html { redirect_to users_path, notice: 'User was successfully updated.' }
           format.json { render :show, status: :ok, location: @user }
         else
           format.html { render :edit }
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
     def destroy
       @user.destroy
       respond_to do |format|
-        format.html { redirect_to users_url, notice: 'Task was successfully destroyed.' }
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
         format.json { head :no_content }
       end
     end

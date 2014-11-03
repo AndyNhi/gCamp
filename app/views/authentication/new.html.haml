@@ -1,0 +1,7 @@
+.jumbotron
+  = form_tag signin_path do |f|
+    = label_tag :email_address
+    = email_field_tag :email_address
+    = label_tag :password
+    = password_field_tag :password
+    = submit_tag 'Log In'

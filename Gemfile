@@ -15,6 +15,7 @@ gem "pg"
 gem 'faker', '~> 1.4.3'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'bcrypt', '~> 3.1.7'
 
 group :production do
   gem "rails_12factor"
