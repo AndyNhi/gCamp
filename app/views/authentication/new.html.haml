@@ -1,5 +1,7 @@
 .jumbotron
   = form_tag signin_path do |f|
+    - if @sign_in_error
+      = @sign_in_error
     = label_tag :email_address
     = email_field_tag :email_address
     = label_tag :password
