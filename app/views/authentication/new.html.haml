@@ -2,7 +2,7 @@
   .jumbotron
     = form_tag signin_path do |f|
       - if @sign_in_error
-        = @sign_in_error
+        .alert.alert-danger= @sign_in_error
       .form-group
         = label_tag :email_address, nil, class: 'col-sm-4 control-label'
         .col-sm-5
