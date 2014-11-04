@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-
     def set_user
       @user = User.find(params[:id])
     end
-
 
     def index
       @users = User.all
@@ -22,7 +20,13 @@ class UsersController < ApplicationController
     end
 
     def create
-      @user = User.new(params.require(:user).permit(:first_name, :last_name, :email_address, :password, :password_confirmation))
+      @user = User.new(params.require(:user).permit(
+                                                      :first_name,
+                                                      :last_name,
+                                                      :email_address,
+                                                      :password,
+                                                      :password_confirmation))
+
       respond_to do |format|
         if @user.save
           session[:user_id] = @user.id
@@ -37,7 +41,13 @@ class UsersController < ApplicationController
 
     def update
       respond_to do |format|
-        if @user.update(params.require(:user).permit(:first_name, :last_name, :email_address, :password, :password_confirmation))
+        if @user.update(params.require(:user).permit(
+                                                      :first_name,
+                                                      :last_name,
+                                                      :email_address,
+                                                      :password,
+                                                      :password_confirmation))
+
           format.html { redirect_to users_path, notice: 'User was successfully updated.' }
           format.json { render :show, status: :ok, location: @user }
         else
