@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   get '/sign-in', to: 'authentication#new', as: :signin
   post '/sign-in', to: 'authentication#create'
 
+  get '/sign-up', to: 'users#new', as: :signup
+  post '/sign-up', to: 'users#create'
+
 end

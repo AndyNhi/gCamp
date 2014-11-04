@@ -1,9 +1,15 @@
-.jumbotron
-  = form_tag signin_path do |f|
-    - if @sign_in_error
-      = @sign_in_error
-    = label_tag :email_address
-    = email_field_tag :email_address
-    = label_tag :password
-    = password_field_tag :password
-    = submit_tag 'Log In'
+.col-sm-offset-2.col-sm-8
+  .jumbotron
+    = form_tag signin_path do |f|
+      - if @sign_in_error
+        = @sign_in_error
+      .form-group
+        = label_tag :email_address, nil, class: 'col-sm-4 control-label'
+        .col-sm-5
+          = email_field_tag :email_address, nil, class: "form-control"
+      .form-group
+        = label_tag :password,  nil, class: 'col-sm-4 control-label'
+        .col-sm-5
+          = password_field_tag :password, nil, class: "form-control"
+          = submit_tag 'Log In', class: 'btn btn-default'
+      .form_tag_padding

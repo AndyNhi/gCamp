@@ -27,4 +27,7 @@ group :development do
   gem 'spring'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
 end

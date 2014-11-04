@@ -13,11 +13,11 @@
           =image_tag('gschool.png', :class => 'navbar-brand')
           .navbar-right
             - if current_user
-              = "Welcome " + current_user.first_name + "!"
+              = "Welcome " + current_user.first_name + " " + current_user.last_name + "!"
               =link_to('Sign Out', signout_path)
 
             -else
-              =link_to('Sign Up', new_user_path)
+              =link_to('Sign Up', signup_path)
               |
               =link_to('Sign In', signin_path)
 
@@ -29,15 +29,16 @@
       %p.alert.alert-success= notice
     = yield
 
-    .footerline
-      %footer
-        = link_to_unless_current 'About', about_path
-        = link_to_unless_current 'Terms', term_path
-        = link_to_unless_current 'FAQ', faq_path
-        = link_to_unless_current 'User', users_path
-        = link_to 'https://linkedin.com/in/andynhi/' do
-          = image_tag('linkin_img.png', width: '20em', class: 'col-md-offset-9')
-        = link_to 'https://github.com/AndyNhi' do
-          = image_tag('github_img.png', width: '20em')
-        = link_to 'https://github.com/AndyNhi' do
-          = image_tag('twitter_img.png', width: '20em')
+  %footer
+    .container.white
+      .footerline
+      = link_to_unless_current 'About', about_path
+      = link_to_unless_current 'Terms', term_path
+      = link_to_unless_current 'FAQ', faq_path
+      = link_to_unless_current 'User', users_path
+      = link_to 'https://linkedin.com/in/andynhi/' do
+        = image_tag('linkin_img.png', width: '20em', class: 'col-md-offset-9')
+      = link_to 'https://github.com/AndyNhi' do
+        = image_tag('github_img.png', width: '20em')
+      = link_to 'https://github.com/AndyNhi' do
+        = image_tag('twitter_img.png', width: '20em')
