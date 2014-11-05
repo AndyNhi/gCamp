@@ -22,9 +22,9 @@
             %label
               = f.check_box :complete
               = 'Complete'
-      .form-group
-        .col-sm-offset-2.col-sm-10
-          - if @new_page
-            = f.submit :class => 'btn btn-primary'
-          - elsif @edit_page
-            = f.submit :class => 'btn btn-primary'
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        - if @new_page
+          = f.submit :class => 'btn btn-primary'
+        - elsif @edit_page
+          = f.submit :class => 'btn btn-primary'
