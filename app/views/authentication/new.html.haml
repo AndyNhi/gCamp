@@ -1,5 +1,7 @@
+
 .col-sm-offset-2.col-sm-8
   .jumbotron
+    %h2 Sign In
     = form_tag signin_path do |f|
       - if @sign_in_error
         .alert.alert-danger= @sign_in_error
@@ -7,9 +9,11 @@
         = label_tag :email_address, nil, class: 'col-sm-4 control-label'
         .col-sm-5
           = email_field_tag :email_address, nil, class: "form-control"
+        %br
       .form-group
         = label_tag :password,  nil, class: 'col-sm-4 control-label'
         .col-sm-5
           = password_field_tag :password, nil, class: "form-control"
-          = submit_tag 'Log In', class: 'btn btn-default'
+          %br
+          = submit_tag 'Log In', class: 'btn btn-primary'
       .form_tag_padding
