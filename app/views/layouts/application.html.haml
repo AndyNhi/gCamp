@@ -6,20 +6,18 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar.navbar-default.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header
         = link_to root_path do
           =image_tag('gschool.png', :class => 'navbar-brand')
-          .navbar-right
-            - if current_user
-              = "Welcome " + current_user.first_name + " " + current_user.last_name + "!"
-              =link_to('Sign Out', signout_path)
-
-            -else
-              =link_to('Sign Up', signup_path)
-              |
-              =link_to('Sign In', signin_path)
+        %ul.nav.navbar-nav.navbar-right.text-white
+          - if current_user
+            %li= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user)
+            %li= link_to('Sign Out', signout_path)
+          - else
+            %li= link_to('Sign Up', signup_path)
+            %li= link_to('Sign In', signin_path)
 
 
   %body
