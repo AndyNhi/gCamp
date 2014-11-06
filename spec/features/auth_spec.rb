@@ -29,17 +29,13 @@ feature "Authentication" do
   end
 
   scenario "User signs into a session" do
-
     login
-
   end
 
   scenario "User signs out of session" do
-
     login
     click_link('Sign Out')
     expect(page).to have_content 'Sign In'
-
   end
 
 end

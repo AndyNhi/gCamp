@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature "Task Crud" do
 
   def create_task
@@ -13,11 +12,9 @@ feature "Task Crud" do
     visit "/tasks"
   end
 
-
   scenario "create tasks" do
     create_task
   end
-
 
   scenario "read tasks" do
     create_task
@@ -25,7 +22,6 @@ feature "Task Crud" do
     click_link "Show"
     expect(page).to have_content "test1"
   end
-
 
   scenario "update tasks" do
     create_task
@@ -35,7 +31,6 @@ feature "Task Crud" do
     click_button "Update Task"
     expect(page).to have_content "Andy"
   end
-
 
   scenario "destroy tasks" do
     create_task

@@ -14,11 +14,9 @@ feature "User Crud" do
     expect(page).to have_content :notice
   end
 
-
   scenario "create user" do
     create_user
   end
-
 
   scenario "read user" do
     create_user
@@ -26,7 +24,6 @@ feature "User Crud" do
     click_link "test test"
     expect(page).to have_content "test@email.com"
   end
-
 
   scenario "update user" do
     create_user
@@ -36,7 +33,6 @@ feature "User Crud" do
     click_button "Update User"
     expect(page).to have_content "Andy"
   end
-
 
   scenario "destroy user" do
     create_user
