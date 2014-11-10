@@ -45,3 +45,15 @@ feature "Projects Crud" do
 
 
 end
+
+feature "Validation Projects" do
+
+  scenario "validates name cannot be blank" do
+    visit "/projects"
+    click_link "Create Project"
+    click_button "Submit"
+    expect(page).to have_content "Description can't be blank"
+  end
+
+
+end

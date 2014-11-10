@@ -18,14 +18,18 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params.require(:project).permit(:description))
-    @project.save
-    redirect_to projects_path
+    if @project.save
+      redirect_to projects_path
+    else
+      @error_message = @project.errors.full_messages.join(", ")
+      render :new
+    end
   end
 
   def update
     @project = Project.find(params[:id])
     @project.update(params.require(:project).permit(:description))
-    redirect_to projects_path, notice: 'Task was successfully updated.' 
+    redirect_to projects_path, notice: 'Task was successfully updated.'
 
   end
 
