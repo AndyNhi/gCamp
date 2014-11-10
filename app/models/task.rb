@@ -12,4 +12,13 @@ class Task < ActiveRecord::Base
 
   validates :description, presence: true
 
+  def on_or_after
+    if due_date.present? && due_date <= Date.current
+      errors.add(:due_date, "can't be in the past")
+    end
+  end
+
+  validate :on_or_after
+
+
 end

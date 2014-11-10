@@ -6,6 +6,7 @@
         %br
         - @task.errors.full_messages.each do |msg|
           = msg
+          %br
 
     .form-group
       = f.label :description, :class => 'col-sm-2 control-label'
@@ -24,7 +25,7 @@
               = 'Complete'
     .form-group
       .col-sm-offset-2.col-sm-10
-        - if @new_page
+        - if @new_page || :new
           = f.submit :class => 'btn btn-primary'
         - elsif @edit_page
           = f.submit :class => 'btn btn-primary'
