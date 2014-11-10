@@ -44,3 +44,15 @@ feature "User Crud" do
 
 
 end
+
+
+feature "User Validation" do
+
+  scenario "validates user cannot have blank name and email" do
+    visit "/users"
+    click_link "Create User"
+    click_button "Create User"
+    expect(page).to have_content "prohibited"
+  end
+
+end
