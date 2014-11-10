@@ -1,11 +1,11 @@
 .jumbotron
   = form_for(@task, html: {class: "form-horizontal"}) do |f|
     - if @task.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
-        %ul
-          - @task.errors.full_messages.each do |msg|
-            %li= msg
+      .alert.alert-danger
+        = "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved"
+        %br
+        - @task.errors.full_messages.each do |msg|
+          = msg
 
     .form-group
       = f.label :description, :class => 'col-sm-2 control-label'

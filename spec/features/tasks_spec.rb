@@ -41,3 +41,17 @@ feature "Task Crud" do
 
 
 end
+
+feature "Task Validation" do
+
+  scenario "validates blank description cannot be submitted" do
+
+    visit "/tasks"
+    click_link "Create Task"
+    click_button "Create Task"
+    expect(page).to have_content "Description can't be blank"
+
+  end
+
+
+end
