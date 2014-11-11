@@ -10,7 +10,7 @@ feature "Authentication" do
     fill_in 'Email', :with => 'a@email.com'
     fill_in 'Password', :with => 'a'
     click_button 'Log In'
-    expect(page).to have_content 'Welcome'
+    expect(page).to have_content( 'Welcome')
   end
 
   scenario "User can sign up" do
