@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to projects_path
     else
-      @error_message = @project.errors.full_messages.join(", ")
+      @error_messages = @project.errors.full_messages
       render :new
     end
   end

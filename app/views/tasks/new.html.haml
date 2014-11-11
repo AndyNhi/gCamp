@@ -1,8 +1,6 @@
 .jumbotron
-  %h1 New task
-
   %ol.breadcrumb
     %li= link_to('Task', tasks_path)
     %li.active= 'New Task'
 
-  = render 'form'
+  = render 'form', title: "New Task"

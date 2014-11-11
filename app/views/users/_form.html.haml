@@ -1,13 +1,7 @@
 .col-sm-offset-2.col-sm-8
   .jumbotron
-    - if @user.errors.any?
-      .alert.alert-danger
-        = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved"
-        - @error_messages.each do |msg|
-          %ul
-            %li= msg
-    - unless @user.id
-      %h2 Sign up for gCamp!
+    = render 'layouts/errors', model: @user
+    %h2= title
     = form_for(@user, html: {class: "form-horizontal"}) do |f|
       .form-group
         = f.label :first_name, :class => 'col-sm-4 control-label'

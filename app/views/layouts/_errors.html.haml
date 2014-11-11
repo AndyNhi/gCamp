@@ -1,0 +1,6 @@
+- if model.errors.any?
+  .alert.alert-danger
+    = "#{pluralize(model.errors.count, "error")} prohibited this user from being saved"
+    - @error_messages.each do |msg|
+      %br
+      = msg

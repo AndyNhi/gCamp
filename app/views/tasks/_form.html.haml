@@ -1,13 +1,7 @@
 .jumbotron
+  %h2= title
   = form_for(@task, html: {class: "form-horizontal"}) do |f|
-    - if @task.errors.any?
-      .alert.alert-danger
-        = "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved"
-        %br
-        - @task.errors.full_messages.each do |msg|
-          = msg
-          %br
-
+    = render 'layouts/errors', model: @task
     .form-group
       = f.label :description, :class => 'col-sm-2 control-label'
       .col-sm-5
@@ -25,7 +19,4 @@
               = 'Complete'
     .form-group
       .col-sm-offset-2.col-sm-10
-        - if @new_page || :new
-          = f.submit :class => 'btn btn-primary'
-        - elsif @edit_page
-          = f.submit :class => 'btn btn-primary'
+        = f.submit :class => 'btn btn-primary'

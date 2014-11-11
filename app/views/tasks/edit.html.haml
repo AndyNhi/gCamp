@@ -1,6 +1,5 @@
-%h1 Editing task
 %ol.breadcrumb
   %li= link_to('Task', tasks_path)
   %li.active= 'Edit Task'
 
-= render 'form'
+= render 'form', title: "Editing Task"

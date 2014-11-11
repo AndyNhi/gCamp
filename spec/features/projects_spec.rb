@@ -4,9 +4,9 @@ feature "Projects Crud" do
 
   def create_project
     visit "/projects"
-    click_link "Create Project"
+    click_on "Create Project"
     fill_in "Description", with: "example"
-    click_button "Submit"
+    click_on "Create Project"
     expect(page).to have_content "example"
   end
 
@@ -19,7 +19,7 @@ feature "Projects Crud" do
   scenario "read project" do
     create_project
     visit '/projects'
-    click_link "example"
+    click_on "example"
     expect(page).to have_content "example"
   end
 
@@ -27,10 +27,10 @@ feature "Projects Crud" do
   scenario "update project" do
     create_project
     visit "/projects"
-    click_link "example"
-    click_link "Edit"
+    click_on "example"
+    click_on "Edit"
     fill_in "Description", with: "Andy"
-    click_button "Submit"
+    click_on "Update Project"
     expect(page).to have_content :notice
   end
 
@@ -38,8 +38,8 @@ feature "Projects Crud" do
   scenario "destroy project" do
     create_project
     visit "/projects"
-    click_link "example"
-    click_link "Destroy"
+    click_on "example"
+    click_on "Destroy"
     expect(page).to have_no_content "example"
   end
 
@@ -50,8 +50,8 @@ feature "Validation Projects" do
 
   scenario "validates name cannot be blank" do
     visit "/projects"
-    click_link "Create Project"
-    click_button "Submit"
+    click_on "Create Project"
+    click_on "Create Project"
     expect(page).to have_content "Description can't be blank"
   end
 

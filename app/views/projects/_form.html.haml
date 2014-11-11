@@ -1,12 +1,11 @@
 .jumbotron
+  %h2= title
   = form_for(@project, html: {class: "form-horizontal"}) do |f|
-    - if @project.errors.present?
-      .alert.alert-danger
-        = @error_message
+    = render '/layouts/errors', model: @project
     .form-group
       = f.label :description, :class => 'col-sm-2 control-label'
       .col-sm-5
         = f.text_field :description, :class => "form-control"
     .form-group
       .col-sm-offset-2.col-sm-10
-        = f.submit 'Submit', class: 'btn btn-default'
+        = f.submit class: 'btn btn-default'
