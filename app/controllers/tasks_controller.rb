@@ -15,46 +15,36 @@ class TasksController < ApplicationController
   end
 
   def show
-    @show_page = true
   end
 
   def new
-    @new_page = true
     @task = Task.new
   end
 
   def edit
-    @edit_page = true
   end
 
   def create
     @task = Task.new(task_params)
-      if @task.save
-        redirect_to @task, notice: 'Task was successfully created.'
-      else
-        @error_messages = @task.errors.full_messages
-        render :new
-      end
+    if @task.save
+      redirect_to @task, notice: 'Task was successfully created.'
+    else
+      @error_messages = @task.errors.full_messages
+      render :new
+    end
   end
 
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.update(task_params)
+      redirect_to @task, notice: 'Task was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
   private
