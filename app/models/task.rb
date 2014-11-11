@@ -18,7 +18,6 @@ class Task < ActiveRecord::Base
     end
   end
 
-  validate :on_or_after, on: :new
-
+  validate :on_or_after, on: :create
 
 end
