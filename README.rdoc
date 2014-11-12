@@ -1,5 +1,5 @@
 == README
 
-![](https://travis-ci.org/AndyNhi/gCamp.svg)
+[![Build Status](https://travis-ci.org/AndyNhi/gCamp.svg)](https://travis-ci.org/AndyNhi/gCamp)
 
 https://mighty-gorge-8689.herokuapp.com/
