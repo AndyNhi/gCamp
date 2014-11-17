@@ -1,16 +1,21 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+  before_action do
+    @project = Project.find(params[:project_id])
+  end
+
   def index
 
     if params[:status] == "all" || params[:status] == ""
-      @tasks = Task.order(params[:sort]).page(params[:page])
+      @tasks = @project.tasks.order(params[:sort]).page(params[:page])
     elsif params[:status] == "incomplete"
-      @tasks = Task.where(complete: false).order(params[:sort]).page(params[:page])
+      @tasks = @project.tasks.where(complete: false).order(params[:sort]).page(params[:page])
     else
-      @tasks = Task.where(complete: false).order(params[:sort]).page(params[:page])
+      @tasks = @project.tasks.where(complete: false).order(params[:sort]).page(params[:page])
     end
     csv(@tasks)
+
 
   end
 
@@ -18,16 +23,16 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = @project.tasks.new
   end
 
   def edit
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @project.tasks.new(task_params)
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
     else
       @error_messages = @task.errors.full_messages
       render :new
@@ -36,7 +41,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Task was successfully updated.'
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
     else
       render :edit
     end
@@ -44,7 +49,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+    redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed.'
   end
 
   private

@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
 
+  belongs_to :project
+
   def due_soon?
     if self.due_date
       true if self.due_date <= (Date.today + 7)

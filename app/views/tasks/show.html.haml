@@ -1,5 +1,5 @@
 %ol.breadcrumb
-  %li= link_to('Task', tasks_path)
+  %li= link_to('Task', project_tasks_path)
   %li.active= 'Show Task'
 
 .jumbotron
@@ -18,6 +18,6 @@
         %td= @task.due_date.strftime("%B %e, %Y")
     %tr
       %th
-        = link_to 'Edit', edit_task_path(@task)
+        = link_to 'Edit', edit_project_task_path(@project, @task)
         = "|"
-        = link_to 'Back', tasks_path
+        = link_to 'Back', project_tasks_path

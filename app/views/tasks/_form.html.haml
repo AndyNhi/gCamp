@@ -1,6 +1,6 @@
 .jumbotron
   %h2= title
-  = form_for(@task, html: {class: "form-horizontal"}) do |f|
+  = form_for([@project, @task], html: {class: "form-horizontal"}) do |f|
     = render 'layouts/errors', model: @task
     .form-group
       = f.label :description, :class => 'col-sm-2 control-label'
@@ -10,7 +10,7 @@
       = f.label :due_date, :class => 'col-sm-2 control-label'
       .col-sm-5
         = f.date_field :due_date, :class => "form-control"
-    - unless current_page?(new_task_path)
+    - unless current_page?(new_project_task_path)
       .form-group
         .col-sm-offset-2.col-sm-10
           .checkbox

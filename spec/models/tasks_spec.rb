@@ -3,13 +3,16 @@ require 'rails_helper'
 describe Task do
 
   before do
+    project = Project.create(description: Faker::App.name)
     @task = Task.new(
+                        project_id: project.id,
                         title: "title",
                         description: "description",
                         complete: false,
                         due_date: '01/01/1999')
 
     @task_update = Task.create(
+                                project_id: project.id,
                                 title: "title",
                                 description: "description",
                                 complete: false,
@@ -25,6 +28,7 @@ describe Task do
         @task.valid?
         expect(@task.errors[:due_date].present?).to be(false)
       end
+    end
 
 
     describe '#update' do
@@ -41,7 +45,6 @@ describe Task do
     end
 
 
-  end
 
 
 end

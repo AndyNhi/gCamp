@@ -1,15 +1,17 @@
 %h1= link_to('Projects Page', projects_path)
 .jumbotron
-  .table
+  %ol.breadcrumb
+    %li= link_to('Projects', projects_path)
+    %li.active= (@project.description)
+  .table.col-md-1
     %table
       %thead
-        %th Description
-        %th
+        %th Tasks
         %th
       %tbody
         %tr
           %td
-            = @project.description
+            = link_to(@project.tasks.count, project_tasks_path(@project))
           .pull-right
             = link_to('Edit', edit_project_path, class: 'btn btn-primary')
             = link_to('Destroy', @project, :method => :delete, class: 'btn btn-danger')

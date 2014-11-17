@@ -5,13 +5,6 @@ Faq.delete_all
              answer: Faker::Lorem.paragraph
 end
 
-Task.delete_all
-
-60.times do
-  Task.create description: Faker::Lorem.sentence,
-              complete: [true, false, false, false].sample,
-              due_date: Faker::Time.forward(21)
-end
 
 Quote.delete_all
 
@@ -34,6 +27,14 @@ end
 
 Project.delete_all
 
-100.times do
-    Project.create description: Faker::App.name
+10.times do
+    project = Project.create(description: Faker::App.name)
+    rand(6).times do
+        Task.create(
+                    project_id: project.id,
+                    description: Faker::Lorem.sentence,
+                    complete: [true, false, false, false].sample,
+                    due_date: Faker::Time.forward(21)
+        )
+    end
 end
