@@ -43,6 +43,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
     else
+      @error_messages = @task.errors.full_messages
       render :edit
     end
   end
