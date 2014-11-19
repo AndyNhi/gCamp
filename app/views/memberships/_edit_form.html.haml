@@ -6,3 +6,5 @@
       = f.select :role, ['Owner', 'Member'], class: 'dropdown'
     .form-group
       = f.submit class: 'btn btn-primary btn-xs'
+    .form-group
+      = link_to("", project_membership_path(@project, membership), method: :delete, class: 'glyphicon glyphicon-remove')

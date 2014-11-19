@@ -3,15 +3,17 @@
   %ol.breadcrumb
     %li= link_to('Projects', projects_path)
     %li.active= (@project.description)
-  .table.col-md-1
+  .table
     %table
       %thead
         %th Tasks
-        %th
+        %th Members
       %tbody
         %tr
           %td
             = link_to(@project.tasks.count, project_tasks_path(@project))
+          %td.col-md-5
+            = link_to(@project.memberships.count, project_memberships_path(@project))
           .pull-right
             = link_to('Edit', edit_project_path, class: 'btn btn-primary')
             = link_to('Destroy', @project, :method => :delete, class: 'btn btn-danger')
