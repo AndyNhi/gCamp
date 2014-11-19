@@ -7,11 +7,13 @@
 %table.table
   %thead
     %th Description
+    %th Memberships
     %th Tasks
   %tbody
     - @projects.each do |proj|
       %tr
         %td= link_to(proj.description, project_path(proj))
+        %td= link_to(proj.memberships.count, project_memberships_path(proj))
         %td= link_to(proj.tasks.count, project_tasks_path(proj, @tasks))
 
 = paginate @projects

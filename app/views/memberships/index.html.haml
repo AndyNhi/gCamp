@@ -1,0 +1,12 @@
+%h1= "#{@project.description}: Manage Members"
+
+%ul.breadcrumb
+  %li= link_to('Projects', projects_path)
+  %li= link_to('My Project')
+  %li= link_to_unless_current('Membership')
+
+
+= render 'form'
+
+- @memberships.each do |m|
+  = render 'edit_form', membership: m

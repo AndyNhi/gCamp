@@ -13,7 +13,7 @@ feature "Task Crud" do
     click_on "Create Task"
     fill_in "Description", with: "test1"
     fill_in "Due date", with: "25/01/2999"
-    click_button "Create Task"
+    click_on "Create Task"
     expect(page).to have_content "test1"
     click_on "Back"
   end
@@ -30,9 +30,9 @@ feature "Task Crud" do
 
   scenario "update tasks" do
     create_task
-    click_link "Edit"
+    click_on "Edit"
     fill_in "Description", with: "Andy"
-    click_button "Update Task"
+    click_on "Update Task"
     expect(page).to have_content "Andy"
   end
 
@@ -54,8 +54,8 @@ feature "Task Validation" do
   scenario "validates blank description cannot be submitted" do
     visit "/projects"
     click_on "0"
-    click_link "Create Task"
-    click_button "Create Task"
+    click_on "Create Task"
+    click_on "Create Task"
     expect(page).to have_content "Description can't be blank"
   end
 

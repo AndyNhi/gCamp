@@ -5,5 +5,7 @@ class Project < ActiveRecord::Base
   validates :description, presence: true
 
   has_many :tasks
+  has_many :memberships
+  has_many :users, through: :memberships
 
 end

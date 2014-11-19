@@ -1,0 +1,8 @@
+.table
+  = form_for [@project, membership], html: {class: 'form-inline'}  do |f|
+    .form-group.col-xs-1
+      = membership.user.first_name
+    .form-group
+      = f.select :role, ['Owner', 'Member'], class: 'dropdown'
+    .form-group
+      = f.submit class: 'btn btn-primary btn-xs'
