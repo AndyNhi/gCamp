@@ -14,18 +14,18 @@ feature "User Crud" do
     expect(page).to have_content :notice
   end
 
-  scenario "create user" do
+  scenario "user can be created" do
     create_user
   end
 
-  scenario "read user" do
+  scenario "user can be shown" do
     create_user
     visit '/users'
     click_on "test test"
     expect(page).to have_content "test@email.com"
   end
 
-  scenario "update user" do
+  scenario "user can be updated" do
     create_user
     visit "/users"
     click_on "Edit"
@@ -34,7 +34,7 @@ feature "User Crud" do
     expect(page).to have_content "Andy"
   end
 
-  scenario "destroy user" do
+  scenario "user can be destroyed" do
     create_user
     visit "/users"
     click_on "Edit"

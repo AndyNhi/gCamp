@@ -11,8 +11,12 @@ class MembershipsController < ApplicationController
 
   def create
     @membership = @project.memberships.new(params.require(:membership).permit(:role, :user_id, :project_id))
-    @membership.save
-    redirect_to project_memberships_path(@project, @membership)
+    if @membership.save
+      redirect_to project_memberships_path(@project, @membership)
+    else
+      @error_messages = @membership.errors.full_messages
+      render :index
+    end
   end
 
 

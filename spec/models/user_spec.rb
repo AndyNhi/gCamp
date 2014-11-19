@@ -8,11 +8,10 @@ describe User do
   end
 
   describe "#create" do
-    it "validates users email address is unique" do
+    it "should validate uniqueness of email address" do
       user_1 = User.new(email_address: "example@email.com")
       user_1.valid?
       expect(user_1.errors[:email_address].present?).to be(true)
-
       user_1.email_address = "yo@email.com"
       user_1.valid?
       expect(user_1.errors[:email_address].present?).to be(false)

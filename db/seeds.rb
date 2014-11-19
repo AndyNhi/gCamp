@@ -18,7 +18,7 @@ User.delete_all
 
 user_array = []
 
-10.times do
+30.times do
    user = User.create(first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
             email_address: Faker::Internet.email,
@@ -41,7 +41,7 @@ Project.delete_all
                     due_date: Faker::Time.forward(21)
         )
         Membership.create(
-        user_id: user_array.sample,
+        user_id: user_array.pop,
         project_id: project.id,
         role: "Member"
             )

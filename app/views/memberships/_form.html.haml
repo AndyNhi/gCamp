@@ -1,9 +1,9 @@
 .well
   = form_for [@project, @membership], html: {class: 'form-inline'}  do |f|
+    =render '/layouts/errors', model: @membership
     .form-group
       = f.collection_select(:user_id, User.all, :id, :first_name, {include_blank: "Please select a User"}, {})
     .form-group
       = f.select :role, ['Owner', 'Member']
     .form-group
       = f.submit class: 'btn btn-primary btn-xs'
-      

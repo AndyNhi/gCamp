@@ -10,21 +10,18 @@ feature "Projects Crud" do
     expect(page).to have_content "example"
   end
 
-
-  scenario "create project" do
+  scenario "project can be created" do
     create_project
   end
 
-
-  scenario "read project" do
+  scenario "project can be shown" do
     create_project
     visit '/projects'
     click_on "example"
     expect(page).to have_content "example"
   end
 
-
-  scenario "update project" do
+  scenario "project can be updated" do
     create_project
     visit "/projects"
     click_on "example"
@@ -34,8 +31,7 @@ feature "Projects Crud" do
     expect(page).to have_content :notice
   end
 
-
-  scenario "destroy project" do
+  scenario "project can be destroyed" do
     create_project
     visit "/projects"
     click_on "example"
@@ -43,12 +39,11 @@ feature "Projects Crud" do
     expect(page).to have_no_content "example"
   end
 
-
 end
 
-feature "Validation Projects" do
+feature "Project Validation" do
 
-  scenario "validates name cannot be blank" do
+  scenario "validates presence of name" do
     visit "/projects"
     click_on "Create Project"
     click_on "Create Project"

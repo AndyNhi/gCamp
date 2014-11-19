@@ -20,7 +20,7 @@ describe Task do
   end
 
     describe '#create' do
-      it "should have a validation only setting completion dates on or ahead of present date" do
+      it "should validate period of completion at present or future date" do
         @task.valid?
         expect(@task.errors[:due_date].present?).to be(true)
 
@@ -32,7 +32,7 @@ describe Task do
 
 
     describe '#update' do
-      it "should be able to update completed task to any date" do
+      it "should update without period validations" do
 
         @task_update.update(:due_date => '01/01/2999')
         @task_update.valid?
