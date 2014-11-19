@@ -28,9 +28,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project.update(params.require(:project).permit(:description))
-    redirect_to projects_path, notice: 'Task was successfully updated.'
-
+    if @project.update(params.require(:project).permit(:description))
+      redirect_to projects_path, notice: 'Task was successfully updated.'
+    else
+      @error_messages = @project.errors.full_messages
+      render :edit
+    end
   end
 
 
