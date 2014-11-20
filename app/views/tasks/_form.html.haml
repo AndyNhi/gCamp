@@ -10,7 +10,7 @@
       = f.label :due_date, :class => 'col-sm-2 control-label'
       .col-sm-5
         = f.date_field :due_date, :class => "form-control"
-    - unless current_page?(new_project_task_path)
+    - unless current_page?(new_project_task_path) || @task.description.blank?
       .form-group
         .col-sm-offset-2.col-sm-10
           .checkbox
