@@ -6,14 +6,12 @@ describe Task do
     project = Project.create(description: Faker::App.name)
     @task = Task.new(
                         project_id: project.id,
-                        title: "title",
                         description: "description",
                         complete: false,
                         due_date: '01/01/1999')
 
     @task_update = Task.create(
                                 project_id: project.id,
-                                title: "title",
                                 description: "description",
                                 complete: false,
                                 due_date: '01/01/1999')
