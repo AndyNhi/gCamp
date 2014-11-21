@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :users
   resources :projects do
     resources :memberships
-    resources :tasks
+    resources :tasks do
+      resources :comments, only: [:new, :create]
+    end
+
   end
 
 

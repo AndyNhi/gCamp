@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
 
   belongs_to :project
+  has_many :comments
 
   def due_soon?
     if self.due_date

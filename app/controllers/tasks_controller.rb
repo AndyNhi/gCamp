@@ -14,12 +14,15 @@ class TasksController < ApplicationController
     else
       @tasks = @project.tasks.where(complete: false).order(params[:sort]).page(params[:page])
     end
-    csv(@tasks)
+    # csv(@tasks)
 
 
   end
 
   def show
+    @comment = @task.comments.new
+    @task = @project.tasks.find(params[:id])
+    @comments = @task.comments.all
   end
 
   def new
