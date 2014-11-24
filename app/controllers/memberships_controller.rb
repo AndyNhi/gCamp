@@ -19,7 +19,6 @@ class MembershipsController < ApplicationController
     end
   end
 
-
   def update
     @membership = @project.memberships.find(params[:id])
     @membership.update(params.require(:membership).permit(:role, :user_id, :project_id))

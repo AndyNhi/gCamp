@@ -36,13 +36,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_path, notice: 'Task was successfully destroyed.' }
-    end
+    redirect_to projects_path, notice: 'Task was successfully destroyed.'
   end
 
 end
