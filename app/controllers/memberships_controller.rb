@@ -12,7 +12,7 @@ class MembershipsController < ApplicationController
   def create
     @membership = @project.memberships.new(params.require(:membership).permit(:role, :user_id, :project_id))
     if @membership.save
-      redirect_to project_memberships_path(@project, @membership)
+      redirect_to project_memberships_path(@project, @membership), notice: "Member was successfully created"
     else
       @error_messages = @membership.errors.full_messages
       render :index
@@ -22,13 +22,13 @@ class MembershipsController < ApplicationController
   def update
     @membership = @project.memberships.find(params[:id])
     @membership.update(params.require(:membership).permit(:role, :user_id, :project_id))
-    redirect_to project_memberships_path(@project, @membership)
+    redirect_to project_memberships_path(@project, @membership), notice: "Member role was updated successfully"
   end
 
   def destroy
     @membership = @project.memberships.find(params[:id])
     @membership.destroy
-    redirect_to project_memberships_path(@project, @membership)
+    redirect_to project_memberships_path(@project, @membership), notice: "Member was removed successfully"
   end
 
 

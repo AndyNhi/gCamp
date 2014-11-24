@@ -19,6 +19,7 @@ feature 'Memberships' do
     membership = Membership.create!(project_id: @project.id, user_id: @user.id, role: 'Member')
     visit project_memberships_path(@project)
     find('.glyphicon')
+    
   end
 
   scenario "can be updated by their roles" do
