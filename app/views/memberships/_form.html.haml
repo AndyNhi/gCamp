@@ -4,6 +4,6 @@
     .form-group
       = f.collection_select(:user_id, User.all, :id, :first_name, {include_blank: "Please select a User"}, {})
     .form-group
-      = f.select :role, ['Owner', 'Member']
+      = f.select :role, ['Member','Owner']
     .form-group
       = f.submit class: 'btn btn-primary btn-xs'

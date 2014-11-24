@@ -3,7 +3,7 @@
     .form-group.col-xs-1
       = membership.user.first_name
     .form-group
-      = f.select :role, ['Owner', 'Member'], class: 'dropdown'
+      = f.select :role, ['Member','Owner'], class: 'dropdown'
     .form-group
       = f.submit class: 'btn btn-primary btn-xs'
     .form-group
