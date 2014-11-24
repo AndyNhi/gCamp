@@ -2,7 +2,7 @@
 
 %ul.breadcrumb
   %li= link_to('Projects', projects_path)
-  %li= link_to('My Project')
+  %li= link_to(@project.description, project_path(@project))
   %li= link_to_unless_current('Membership')
 
 
