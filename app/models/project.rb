@@ -6,6 +6,9 @@ class Project < ActiveRecord::Base
 
   has_many :tasks
   has_many :memberships
+  # def memberships
+  #   Membership.where(project_id: self.id)
+  # end
   has_many :users, through: :memberships
 
 end
