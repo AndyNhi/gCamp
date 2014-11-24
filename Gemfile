@@ -11,18 +11,17 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-gem "pg"
+gem 'pg'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'bcrypt', '~> 3.1.7'
 
 group :production do
-  gem "rails_12factor"
+  gem 'rails_12factor'
 end
 
 group :development, :test do
   gem 'faker', '~> 1.4.3'
-
 end
 
 group :development do
@@ -35,7 +34,7 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'capybara'
   gem 'launchy'
 end
