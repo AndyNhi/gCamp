@@ -1,31 +1,24 @@
 .pull-right
   = link_to('Edit', edit_project_task_path(@project, @task), class: 'btn btn-primary')
 .page-header
-  
+
 %ol.breadcrumb
   %li= link_to('Task', project_tasks_path)
   %li.active= 'Show Task'
 
-.jumbotron
-  %table.table-condensed
-    %tr
-      %th Description: &nbsp;
-      %td= @task.description
-    %tr
-      %th Completion: &nbsp;
-      %td= @task.complete
-    %tr
-      %th Due Date: &nbsp;
-      - if @task.due_date.nil?
-        %td Infinite
-      - else
-        %td= @task.due_date.strftime("%B %e, %Y")
-    %tr
-      %th
-        = link_to 'Edit', edit_project_task_path(@project, @task)
-        = "|"
-        = link_to 'Back', project_tasks_path
-
+%table.table-condensed
+  %tr
+    %th Description: &nbsp;
+    %td= @task.description
+  %tr
+    %th Completion: &nbsp;
+    %td= @task.complete
+  %tr
+    %th Due Date: &nbsp;
+    - if @task.due_date.nil?
+      %td Infinite
+    - else
+      %td= @task.due_date.strftime("%B %e, %Y")
 
 %h2 Comments
 - @comments.each do |comment|
