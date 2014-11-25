@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(params.require(:project).permit(:description))
-      redirect_to projects_path, notice: 'Task was successfully updated.'
+      redirect_to projects_path, notice: 'Project was successfully updated.'
     else
       @error_messages = @project.errors.full_messages
       render :edit
@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to projects_path, notice: 'Task was successfully destroyed.'
+    redirect_to projects_path, notice: 'Project was successfully destroyed.'
   end
 
 end

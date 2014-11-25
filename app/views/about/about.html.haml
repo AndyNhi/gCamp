@@ -1,5 +1,7 @@
-.center
-  %h1.about_text About
-  %h4.about_text Get organized and increase productivity with your team.
+%h1 About
+=image_tag('gschool.jpg', class: 'img-reponsive', size: "400")
+= "CONTENT"
 
-=image_tag('gschool.jpg', :class => 'center img-reponsive img-circle')
+.padding_about
+%p Gcamp is extremely active. Look at our killer stats below!
+%p= "#{pluralize(@projects, "Project")}, #{pluralize(@tasks, "Task")}, #{pluralize(@members, "Member")}, #{pluralize(@users, "User")}, #{pluralize(@comments, "Comment")}"

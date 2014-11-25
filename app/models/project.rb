@@ -4,8 +4,8 @@ class Project < ActiveRecord::Base
 
   validates :description, presence: true
 
-  has_many :tasks
-  has_many :memberships
+  has_many :tasks, dependent: :destroy
+  has_many :memberships, dependent: :destroy
   # def memberships
   #   Membership.where(project_id: self.id)
   # end

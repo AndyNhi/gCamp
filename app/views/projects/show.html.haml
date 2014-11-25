@@ -1,7 +1,6 @@
 .pull-right
   = link_to('Edit', edit_project_path, class: 'btn btn-primary')
-  = link_to('Destroy', @project, :method => :delete, class: 'btn btn-danger')
-%h1= link_to('Projects Page', projects_path)
+%h1= link_to(@project.description, projects_path)
 
 %ol.breadcrumb
   %li= link_to('Projects', projects_path)
@@ -15,3 +14,9 @@
       %td= link_to("#{@project.tasks.count} Tasks", project_tasks_path(@project))
     %tr
       %td= link_to("#{@project.memberships.count} Members", project_memberships_path(@project))
+
+.padding_adjustment
+.well
+  %strong Delete Project
+  %p= "Deleting the project will also delete #{pluralize(@project.memberships.count, "Membership")}, #{pluralize(@project.tasks.count, "Task")} and associated comments "
+  = link_to("Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger')
