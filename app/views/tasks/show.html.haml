@@ -22,18 +22,19 @@
         = "|"
         = link_to 'Back', project_tasks_path
 
-%table
-  %thead
-    %h2 Comments
-  %tbody
-    - @comments.each do |comment|
-      %tr
-        .col-md-3
-          %td
-            = link_to(comment.user.first_name, user_path(comment.user))
-            .text-muted
-              = "#{time_ago_in_words(comment.created_at)} ago"
-        .col-md-9
-          %td
-            = comment.copy
-= render 'form_comment'
+
+%h2 Comments
+- @comments.each do |comment|
+  .row
+    .col-md-3
+      = link_to(comment.user.first_name, user_path(comment.user))
+      .text-muted
+        = "#{time_ago_in_words(comment.created_at)} ago"
+    .col-md-9
+      = comment.copy
+
+- if current_user.present?
+  = render 'form_comment'
+
+
+.padding_adjustment
