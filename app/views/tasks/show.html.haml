@@ -1,3 +1,7 @@
+.pull-right
+  = link_to('Edit', edit_project_task_path(@project, @task), class: 'btn btn-primary')
+.page-header
+  
 %ol.breadcrumb
   %li= link_to('Task', project_tasks_path)
   %li.active= 'Show Task'
