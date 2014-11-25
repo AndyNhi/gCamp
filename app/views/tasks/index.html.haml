@@ -24,7 +24,9 @@
 
   - @tasks.each do |task|
     %tr{class: ("danger" if task.due_soon?)}
-      %td= task.description
+      %td
+        = task.description
+        = link_to(task.comments.count, project_tasks_path(@project, task), class: 'badge')
       - if task.due_date.nil?
         %td Infinite
       - else
