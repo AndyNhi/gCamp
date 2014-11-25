@@ -35,7 +35,7 @@ feature "Projects Crud" do
     create_project
     visit "/projects"
     click_on "example"
-    click_on "Destroy"
+    click_on "Delete"
     expect(page).to have_no_content "example"
   end
 

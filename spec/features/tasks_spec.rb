@@ -14,7 +14,7 @@ feature "Task Crud" do
     fill_in "Due date", with: "25/01/2999"
     click_on "Create Task"
     expect(page).to have_content "test1"
-    click_on "Back"
+    click_on "Task"
   end
 
   scenario "user creates a task" do
@@ -23,7 +23,7 @@ feature "Task Crud" do
 
   scenario "user shows a task" do
     create_task
-    click_on "Show"
+    click_on "test1"
     expect(page).to have_content "test1"
   end
 
@@ -37,7 +37,7 @@ feature "Task Crud" do
 
   scenario "user can destroy a task" do
     create_task
-    click_on "Destroy"
+    click_on "delete"
     expect(page).to have_no_content "test1"
   end
 
