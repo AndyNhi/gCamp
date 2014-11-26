@@ -18,8 +18,8 @@ feature 'Memberships' do
   scenario "can be removed from projects" do
     membership = Membership.create!(project_id: @project.id, user_id: @user.id, role: 'Member')
     visit project_memberships_path(@project)
-    find('.glyphicon')
-    
+    click_on 'delete'
+    expect(page).to_not have_content(membership.id)
   end
 
   scenario "can be updated by their roles" do

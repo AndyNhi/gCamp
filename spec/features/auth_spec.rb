@@ -14,7 +14,6 @@ feature "Authentication" do
   end
 
   scenario "user can sign up" do
-
     visit root_path
     click_on('Sign Up')
     visit '/sign-up'
@@ -25,7 +24,6 @@ feature "Authentication" do
     fill_in 'Password confirmation', with: :password
     click_on 'Create User'
     expect(page).to have_content :notice
-
   end
 
   scenario "user can sign into session" do

@@ -4,20 +4,20 @@ feature 'Comments' do
 
   before(:each) do
     @user = User.create!(
-            first_name: Faker::Name.first_name,
-            last_name: Faker::Name.last_name,
-            email_address: Faker::Internet.email,
-            password: "pass",
-            password_confirmation: "pass")
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      email_address: Faker::Internet.email,
+      password: "pass",
+      password_confirmation: "pass")
 
-    @project = Project.create!(description: Faker::App.name)
+    @project = Project.create!(
+      description: Faker::App.name)
 
     @task = Task.create!(
-            description: 'blah blah',
-            due_date: '01/01/2999',
-            project_id: @project.id
+      description: 'blah blah',
+      due_date: '01/01/2999',
+      project_id: @project.id
     )
-
   end
 
   def sign_in
