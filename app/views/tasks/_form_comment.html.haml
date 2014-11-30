@@ -1,7 +1,5 @@
 = form_for [@project, @task, @comment] do |f|
   .form-group
-    .col-md-offset3
-      = f.text_area :copy, class: 'form-control'
+    = f.text_area :copy, class: 'form-control'
   .form-group
-    .col-md-offset3
-      = f.submit 'Add Comment', class: 'btn btn-primary'
+    = f.submit 'Add Comment', class: 'btn btn-primary'
