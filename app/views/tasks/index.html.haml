@@ -12,7 +12,9 @@
   %h1= "Task for #{@project.description}"
   %ol.breadcrumb
     %li= link_to('Projects', projects_path)
-    %li.active= (@project.description)
+    %li= link_to(@project.description, project_path(@project))
+    %li.active= ("Tasks")
+
 
 
 %table.table
