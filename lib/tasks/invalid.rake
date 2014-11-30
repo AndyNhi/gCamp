@@ -24,5 +24,4 @@ namespace :comment do
     Comment.where.not(user_id: User.pluck(:id)).destroy_all
   end
 
-
 end
