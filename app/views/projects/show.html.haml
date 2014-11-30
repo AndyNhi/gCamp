@@ -11,9 +11,9 @@
     %th
   %tbody
     %tr
-      %td= link_to("#{@project.tasks.count} Tasks", project_tasks_path(@project))
+      %td= link_to("#{pluralize(@project.tasks.count, "Task")}", project_tasks_path(@project))
     %tr
-      %td= link_to("#{@project.memberships.count} Members", project_memberships_path(@project))
+      %td= link_to("#{pluralize(@project.memberships.count, "Member")}", project_memberships_path(@project))
 
 .padding_adjustment
 .well
