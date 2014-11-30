@@ -10,11 +10,14 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    @membership = @project.memberships.new(params.require(:membership).permit(:role, :user_id, :project_id))
+    @membership = Membership.new(params.require(:membership).permit(:role, :user_id))
+    @membership.project = @project
+
     if @membership.save
-      redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.first_name} was successfully created"
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.first_name} was successfully created"
     else
       @error_messages = @membership.errors.full_messages
+      @memberships = @project.memberships
       render :index
     end
   end

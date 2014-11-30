@@ -8,6 +8,5 @@
 
 = render 'form'
 
-- @project.users.each do |user|
-  - user.memberships.each do |m|
-    = render 'edit_form', membership: m
+- @memberships.each do |m|
+  = render 'edit_form', membership: m
