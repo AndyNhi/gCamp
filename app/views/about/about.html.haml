@@ -1,7 +1,7 @@
-%h1 About
-=image_tag('gschool.jpg', class: 'img-reponsive', size: "400")
-= "CONTENT"
+%center
+  %h1 About
+  =image_tag('gschool.jpg', class: 'img-reponsive img-circle', width: 600)
 
-.padding_about
-%p Gcamp is extremely active. Look at our killer stats below!
-%p= "#{pluralize(@projects, "Project")}, #{pluralize(@tasks, "Task")}, #{pluralize(@members, "Member")}, #{pluralize(@users, "User")}, #{pluralize(@comments, "Comment")}"
+  .padding_about
+    %p Gcamp is extremely active. Look at our killer stats below!
+    %p= "#{pluralize(@projects, "Project")}, #{pluralize(@tasks, "Task")}, #{pluralize(@members, "Member")}, #{pluralize(@users, "User")}, #{pluralize(@comments, "Comment")}"
