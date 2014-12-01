@@ -4,7 +4,7 @@
   %h1 Do some awesome stuff
 
 %ol.breadcrumb
-  %li= link_to('Project', projects_path)
+  %li= link_to('Projects', projects_path)
   %li= link_to(@task.description, project_tasks_path(@project,@task))
   %li= link_to('Tasks', project_tasks_path)
   %li.active= 'Show Task'
