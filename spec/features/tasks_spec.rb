@@ -5,6 +5,17 @@ feature "Task Crud" do
 
   before do
     @project = Project.create!(description: Faker::App.name)
+    User.create!(first_name: 'Andy', last_name: 'Nguyen', email_address: 'example@email.com', password: 'pass', password_confirmation: 'pass')
+    signin
+  end
+
+  def signin
+    visit root_path
+    click_on('Sign In')
+    visit '/sign-in'
+    fill_in 'Email', :with => 'example@email.com'
+    fill_in 'Password', :with => 'pass'
+    click_on 'Log In'
   end
 
   def create_task
@@ -48,6 +59,17 @@ feature "Task Validation" do
 
   before do
     @project = Project.create(description: Faker::App.name)
+    User.create!(first_name: 'Andy', last_name: 'Nguyen', email_address: 'example@email.com', password: 'pass', password_confirmation: 'pass')
+    signin
+  end
+
+  def signin
+    visit root_path
+    click_on('Sign In')
+    visit '/sign-in'
+    fill_in 'Email', :with => 'example@email.com'
+    fill_in 'Password', :with => 'pass'
+    click_on 'Log In'
   end
 
   scenario "validates presence of description" do

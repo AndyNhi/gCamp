@@ -2,7 +2,21 @@ require 'rails_helper'
 
 feature "Projects Crud" do
 
+  before(:each) do
+    User.create!(first_name: 'Andy', last_name: 'Nguyen', email_address: 'example@email.com', password: 'pass', password_confirmation: 'pass')
+  end
+
+  def signin
+    visit root_path
+    click_on('Sign In')
+    visit '/sign-in'
+    fill_in 'Email', :with => 'example@email.com'
+    fill_in 'Password', :with => 'pass'
+    click_on 'Log In'
+  end
+
   def create_project
+    signin
     visit "/projects"
     click_on "Create Project"
     fill_in "Description", with: "example"
@@ -43,7 +57,22 @@ end
 
 feature "Project Validation" do
 
+  before(:each) do
+    User.create!(first_name: 'Andy', last_name: 'Nguyen', email_address: 'example@email.com', password: 'pass', password_confirmation: 'pass')
+  end
+
+  def signin
+    visit root_path
+    click_on('Sign In')
+    visit '/sign-in'
+    fill_in 'Email', :with => 'example@email.com'
+    fill_in 'Password', :with => 'pass'
+    click_on 'Log In'
+  end
+
+
   scenario "validates presence of name" do
+    signin
     visit "/projects"
     click_on "Create Project"
     click_on "Create Project"

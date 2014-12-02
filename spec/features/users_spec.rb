@@ -14,6 +14,20 @@ feature "User Crud" do
     expect(page).to have_content :notice
   end
 
+  before(:each) do
+    @user =User.create!(first_name: 'Andy', last_name: 'Nguyen', email_address: 'example@email.com', password: 'pass', password_confirmation: 'pass')
+    signin
+  end
+
+  def signin
+    visit root_path
+    click_on('Sign In')
+    visit '/sign-in'
+    fill_in 'Email', :with => 'example@email.com'
+    fill_in 'Password', :with => 'pass'
+    click_on 'Log In'
+  end
+
   scenario "user can be created" do
     create_user
   end
@@ -26,7 +40,6 @@ feature "User Crud" do
   end
 
   scenario "user can be updated" do
-    create_user
     visit "/users"
     click_on "Edit"
     fill_in "First name", with: "Andy"
@@ -35,17 +48,30 @@ feature "User Crud" do
   end
 
   scenario "user can be destroyed" do
-    create_user
     visit "/users"
     click_on "Edit"
     click_on "Delete User"
-    expect(page).to have_no_content "test test"
+    expect(page).to have_no_content "Andy"
   end
 
 
 end
 
 feature "User Validation" do
+
+  before(:each) do
+    User.create!(first_name: 'Andy', last_name: 'Nguyen', email_address: 'example@email.com', password: 'pass', password_confirmation: 'pass')
+    signin
+  end
+
+  def signin
+    visit root_path
+    click_on('Sign In')
+    visit '/sign-in'
+    fill_in 'Email', :with => 'example@email.com'
+    fill_in 'Password', :with => 'pass'
+    click_on 'Log In'
+  end
 
   scenario "validates user cannot have blank name and email" do
     visit "/users"
