@@ -1,6 +1,6 @@
 .page-header
   .pull-right
-    = link_to('Edit', edit_project_task_path(@project, @task), class: 'btn btn-primary')
+    = link_to('Edit', edit_project_task_path(@project, @task), class: 'btn btn-info')
   %h1= "Task for #{@task.description}"
 
 
@@ -31,7 +31,7 @@
       - if comment.user == nil
         = "deleted user"
       -else
-        = link_to(comment.user.first_name, user_path(comment.user))
+        = link_to("#{comment.user.first_name} #{comment.user.last_name}", user_path(comment.user))
       .text-muted
         = "#{time_ago_in_words(comment.created_at)} ago"
     .col-md-9
