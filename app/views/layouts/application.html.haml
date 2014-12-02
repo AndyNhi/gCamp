@@ -6,38 +6,55 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
-    .navbar.navbar-default.navbar-inverse.navbar-fixed-top
-      .container
-        .navbar-header
-        = link_to root_path do
-          =image_tag('gschool.png', :class => 'navbar-brand')
-        %ul.nav.navbar-nav.navbar-right.text-white
-          - if current_user
-            %li= link_to "Welcome #{current_user.first_name} #{current_user.last_name}", user_path(current_user)
-            %li= link_to('Sign Out', signout_path)
-          - else
-            %li= link_to('Sign Up', signup_path)
-            %li= link_to('Sign In', signin_path)
+
+    %body
+      .navbar.navbar-default.navbar-inverse.navbar-fixed-top
+        .container
+          .navbar-header
+          = link_to projects_path do
+            =image_tag('gschool.png', :class => 'navbar-brand')
+          -if current_user.present?
+            %ul.nav.navbar-nav
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  My Projects
+                  %span.caret
+                %ul.dropdown-menu{:role => "menu"}
+                  - current_user.projects.each do |project|
+                    %li= link_to(project.description, project_path(project))
+                  %li.divider
+                  %li= link_to("New Project", new_project_path)
+
+          %ul.nav.navbar-nav.navbar-right.text-white
+            - if current_user
+              %li= link_to "Welcome #{current_user.first_name} #{current_user.last_name}", user_path(current_user)
+              %li= link_to('Sign Out', signout_path)
+            - else
+              %li= link_to('Sign Up', signup_path)
+              %li= link_to('Sign In', signin_path)
 
 
-  %body
-  .container.white
-    .padding_adjustment
-    - unless notice.nil?
-      %p.alert.alert-success= notice
-    = yield
 
-  %footer
     .container.white
-      .footerline
-      = link_to_unless_current 'About', about_path
-      = link_to_unless_current 'Terms', term_path
-      = link_to_unless_current 'FAQ', faq_path
-      = link_to_unless_current 'User', users_path
-      = link_to_unless_current 'Projects', projects_path
-      = link_to 'https://linkedin.com/in/andynhi/' do
-        = image_tag('linkin_img.png', width: '20em', class: 'col-md-offset-8')
-      = link_to 'https://github.com/AndyNhi' do
-        = image_tag('github_img.png', width: '20em')
-      = link_to 'https://github.com/AndyNhi' do
-        = image_tag('twitter_img.png', width: '20em')
+      .padding_adjustment
+      - unless notice.nil?
+        %p.alert.alert-success= notice
+      = yield
+
+      %footer
+        .footerline
+          %center
+            = link_to_unless_current 'Home', root_path
+            = "|"
+            = link_to_unless_current 'About', about_path
+            = "|"
+            = link_to_unless_current 'Terms', term_path
+            = "|"
+            = link_to_unless_current 'FAQ', faq_path
+            = "|"
+            = link_to 'https://linkedin.com/in/andynhi/' do
+              = image_tag('linkin_img.png', width: '20em')
+            = link_to 'https://github.com/AndyNhi' do
+              = image_tag('github_img.png', width: '20em')
+            = link_to 'https://github.com/AndyNhi' do
+              = image_tag('twitter_img.png', width: '20em')

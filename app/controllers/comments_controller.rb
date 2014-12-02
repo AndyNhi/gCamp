@@ -12,4 +12,5 @@ class CommentsController < ApplicationController
     redirect_to project_task_path(@project, @task)
   end
 
+
 end

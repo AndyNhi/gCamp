@@ -1,4 +1,4 @@
-class FaqsController < ApplicationController
+class FaqsController < PublicController
 
   def faq
     @faqs = Faq.all

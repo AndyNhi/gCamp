@@ -1,0 +1,62 @@
+!!!
+%html
+  %head
+    %title GCamp
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+
+    %body
+      .navbar.navbar-default.navbar-inverse.navbar-fixed-top
+        .container
+          .navbar-header
+          = link_to root_path do
+            =image_tag('gschool.png', :class => 'navbar-brand')
+
+          %ul.nav.navbar-nav
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Dropdown
+                %span.caret
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider
+                %li
+                  %a{:href => "#"} Separated link
+                %li.divider
+                %li
+                  %a{:href => "#"} One more separated link
+
+          %ul.nav.navbar-nav.navbar-right.text-white
+            - if current_user
+              %li= link_to "Welcome #{current_user.first_name} #{current_user.last_name}", user_path(current_user)
+              %li= link_to('Sign Out', signout_path)
+            - else
+              %li= link_to('Sign Up', signup_path)
+              %li= link_to('Sign In', signin_path)
+
+
+
+    .container.white
+      .padding_adjustment
+      - unless notice.nil?
+        %p.alert.alert-success= notice
+      = yield
+
+      %footer
+        .footerline
+          = link_to_unless_current 'About', about_path
+          = link_to_unless_current 'Terms', term_path
+          = link_to_unless_current 'FAQ', faq_path
+          = link_to 'https://linkedin.com/in/andynhi/' do
+            = image_tag('linkin_img.png', width: '20em', class: 'col-md-offset-8')
+          = link_to 'https://github.com/AndyNhi' do
+            = image_tag('github_img.png', width: '20em')
+          = link_to 'https://github.com/AndyNhi' do
+            = image_tag('twitter_img.png', width: '20em')

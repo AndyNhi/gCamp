@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   before_action do
@@ -56,23 +57,28 @@ class TasksController < ApplicationController
     redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed.'
   end
 
-  private
-    def csv(file)
-                  file
-                  respond_to do |format|
-                    format.html
-                    format.csv do
-                                headers['Content-Disposition'] = "attachment; filename=\"task-list\""
-                                headers['Content-Type'] ||= 'text/csv'
-                               end
-                             end
+private
+  def csv(file)
+    file
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"task-list\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
     end
+  end
 
-    def set_task
-      @task = Task.find(params[:id])
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    def task_params
-      params.require(:task).permit(:title, :description, :due_date, :complete)
-    end
+  def task_params
+    params.require(:task).permit(:title, :description, :due_date, :complete)
+  end
+
+  def validates_user_is_present
+    redirect_to signin_path, notice: "You must be logged in to access that information" unless current_user.present?
+  end
+
 end

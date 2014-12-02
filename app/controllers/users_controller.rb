@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  skip_before_action :validates_user_is_present, only: [:new, :create]
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def set_user
@@ -23,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(params.require(:user).permit( :first_name, :last_name, :email_address, :password, :password_confirmation))
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'User was successfully created.'
+      redirect_to new_project_path, notice: 'User was successfully created.'
     else
       @error_messages = @user.errors.full_messages
       render :new
@@ -42,5 +45,6 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
+
 
 end

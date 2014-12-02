@@ -1,5 +1,7 @@
 class MembershipsController < ApplicationController
 
+  before_action :validates_user_is_present
+
   before_action do
     @project = Project.find(params[:project_id])
   end
@@ -32,6 +34,11 @@ class MembershipsController < ApplicationController
     @membership = @project.memberships.find(params[:id])
     @membership.destroy
     redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.first_name} was removed successfully"
+  end
+
+private
+  def validates_user_is_present
+    redirect_to signin_path, notice: "You must be logged in to access that information" unless current_user.present?
   end
 
 

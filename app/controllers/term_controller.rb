@@ -1,2 +1,2 @@
-class TermController < ApplicationController
+class TermController < PublicController
 end
