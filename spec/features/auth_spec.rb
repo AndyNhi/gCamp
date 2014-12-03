@@ -3,17 +3,17 @@ require 'rails_helper'
 feature "Authentication" do
 
   def login
-    User.create(first_name: 'a', last_name: 'a', email_address: 'a@email.com', password: 'a')
+    user = create_user
     visit root_path
     click_on('Sign In')
     visit '/sign-in'
-    fill_in 'Email', :with => 'a@email.com'
-    fill_in 'Password', :with => 'a'
+    fill_in 'Email', with: user.email_address
+    fill_in 'Password', with: user.password
     click_on 'Log In'
     expect(page).to have_content( 'Welcome')
   end
 
-  scenario "user can sign up" do
+  scenario "sign up" do
     visit root_path
     click_on('Sign Up')
     visit '/sign-up'
@@ -26,11 +26,11 @@ feature "Authentication" do
     expect(page).to have_content :notice
   end
 
-  scenario "user can sign into session" do
+  scenario "create session" do
     login
   end
 
-  scenario "user can sign out of session" do
+  scenario "destroy session" do
     login
     click_on('Sign Out')
     expect(page).to have_content 'Sign In'

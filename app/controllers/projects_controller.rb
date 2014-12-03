@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
 
+  before_action :member_to_project_restriction, except: [:index, :new, :create]
+
   def index
     @projects = Project.page(params[:page])
   end
@@ -19,7 +21,8 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params.require(:project).permit(:description))
     if @project.save
-      redirect_to projects_path
+      Membership.create(project_id: @project.id, user_id: current_user.id, role: "Owner")
+      redirect_to project_tasks_path(@project)
     else
       @error_messages = @project.errors.full_messages
       render :new
@@ -40,6 +43,15 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.destroy
     redirect_to projects_path, notice: 'Project was successfully destroyed.'
+  end
+
+private
+
+  def member_to_project_restriction
+    @project = Project.find(params[:id])
+    unless @project.memberships.where(user_id: current_user.id).exists?
+      render file: 'public/404', status: :not_found, layout: false
+    end
   end
 
 end

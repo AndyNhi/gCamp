@@ -6,8 +6,9 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  def index
+  before_action :member_to_task_restriction
 
+  def index
     if params[:status] == "all" || params[:status] == ""
       @tasks = @project.tasks.order(params[:sort]).page(params[:page])
     elsif params[:status] == "incomplete"
@@ -16,8 +17,6 @@ class TasksController < ApplicationController
       @tasks = @project.tasks.where(complete: false).order(params[:sort]).page(params[:page])
     end
     # csv(@tasks)
-
-
   end
 
   def show
@@ -57,7 +56,7 @@ class TasksController < ApplicationController
     redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed.'
   end
 
-private
+  private
   def csv(file)
     file
     respond_to do |format|
@@ -77,8 +76,10 @@ private
     params.require(:task).permit(:title, :description, :due_date, :complete)
   end
 
-  def validates_user_is_present
-    redirect_to signin_path, notice: "You must be logged in to access that information" unless current_user.present?
+  def member_to_task_restriction
+    unless @project.memberships.where(user_id: current_user.id).exists?
+      render file: 'public/404', status: :not_found, layout: false
+    end
   end
 
 end
