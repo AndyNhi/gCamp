@@ -1,21 +1,15 @@
-.pull-right
-  = link_to('Edit', edit_project_path, class: 'btn btn-primary')
-%h1= link_to(@project.description, projects_path)
+.page-header
+  .pull-right
+    = link_to('Edit', edit_project_path, class: 'btn btn-primary')
+  %h1= @project.description
 
 %ol.breadcrumb
   %li= link_to('Projects', projects_path)
   %li.active= (@project.description)
 
-%table
-  %thead
-    %th
-  %tbody
-    %tr
-      %td= link_to("#{pluralize(@project.tasks.count, "Task")}", project_tasks_path(@project))
-    %tr
-      %td= link_to("#{pluralize(@project.memberships.count, "Member")}", project_memberships_path(@project))
+%p= link_to("#{pluralize(@project.tasks.count, "Task")}", project_tasks_path(@project))
+%p= link_to("#{pluralize(@project.memberships.count, "Member")}", project_memberships_path(@project))
 
-.padding_adjustment
 .well
   %strong Delete Project
   %p= "Deleting the project will also delete #{pluralize(@project.memberships.count, "Membership")}, #{pluralize(@project.tasks.count, "Task")} and associated comments "
