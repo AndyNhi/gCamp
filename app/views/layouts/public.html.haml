@@ -6,32 +6,12 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
-
     %body
       .navbar.navbar-default.navbar-inverse.navbar-fixed-top
         .container
           .navbar-header
           = link_to root_path do
             =image_tag('gschool.png', :class => 'navbar-brand')
-
-          %ul.nav.navbar-nav
-            %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Dropdown
-                %span.caret
-              %ul.dropdown-menu{:role => "menu"}
-                %li
-                  %a{:href => "#"} Action
-                %li
-                  %a{:href => "#"} Another action
-                %li
-                  %a{:href => "#"} Something else here
-                %li.divider
-                %li
-                  %a{:href => "#"} Separated link
-                %li.divider
-                %li
-                  %a{:href => "#"} One more separated link
 
           %ul.nav.navbar-nav.navbar-right.text-white
             - if current_user
@@ -40,8 +20,6 @@
             - else
               %li= link_to('Sign Up', signup_path)
               %li= link_to('Sign In', signin_path)
-
-
 
     .container.white
       .padding_adjustment

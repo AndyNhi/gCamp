@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_action :validates_user_is_present, only: [:new, :create]
+  skip_before_action :validates_user_is_present, only: [:new, :create, :signup]
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -18,6 +18,11 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+
+  def signup
+    @user = User.new
+  end
+
 
   def edit
   end

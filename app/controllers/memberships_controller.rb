@@ -36,7 +36,7 @@ class MembershipsController < ApplicationController
     redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.first_name} was removed successfully"
   end
 
-private
+  private
   def validates_user_is_present
     redirect_to signin_path, notice: "You must be logged in to access that information" unless current_user.present?
   end

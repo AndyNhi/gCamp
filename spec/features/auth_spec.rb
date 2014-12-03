@@ -22,7 +22,9 @@ feature "Authentication" do
     fill_in 'Email address', with: 'test@email.com'
     fill_in 'Password', with: 'test'
     fill_in 'Password confirmation', with: :password
-    click_on 'Create User'
+    within("#new_user") do
+      click_on 'Sign Up'
+    end
     expect(page).to have_content :notice
   end
 
