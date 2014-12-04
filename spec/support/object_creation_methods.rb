@@ -30,6 +30,11 @@ module ObjectCreationMethods
     Membership.create!(defaults.merge(overrides))
   end
 
+  def update_membership(overrides = {})
+    create_membership
+  end
+
+
   def new_task(overrides = {})
     defaults = {
       project: create_project,
@@ -57,5 +62,9 @@ module ObjectCreationMethods
     Comment.create!(defaults.merge(overrides))
   end
 
+  def create_session
+    create_user
+    session[:user_id] = create_user.id
+  end
 
 end

@@ -18,11 +18,12 @@ feature 'Membership' do
 
   scenario "users are added as members of a project" do
     signin
+    create_membership(user_id: @user.id, project_id: @project.id, role: 'Owner')
+    user_2 = create_user
     visit project_memberships_path(@project)
-    select(@user.first_name, from: 'membership_user_id')
-    select('Member', from: 'membership_role')
+    select(user_2.first_name, from: 'membership_user_id')
     click_on 'Create Membership'
-    expect(page).to have_content(@user.first_name)
+    expect(page).to have_content(user_2.first_name)
   end
 
   scenario "users are removed as members of a project" do

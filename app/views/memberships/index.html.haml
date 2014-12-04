@@ -5,8 +5,15 @@
   %li= link_to(@project.description, project_path(@project))
   %li= link_to_unless_current('Membership')
 
+- if @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
+  = render 'form'
+  - @memberships.each do |m|
+    = render 'edit_form', membership: m
+- else
 
-= render 'form'
-
-- @memberships.each do |m|
-  = render 'edit_form', membership: m
+  - @memberships.each do |m|
+    .row
+      .col-md-1
+        %p= "#{m.user.first_name} #{m.user.last_name}"
+      .col-md-2.col-md-offset
+        %p= m.role

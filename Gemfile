@@ -22,7 +22,10 @@ end
 
 group :development, :test do
   gem 'faker', '~> 1.4.3'
+  gem 'pry-rails'
 end
+
+
 
 group :development do
   gem 'better_errors', '~> 2.0.0'
@@ -37,5 +40,4 @@ group :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'capybara'
   gem 'launchy'
-  gem 'pry-rails'
 end

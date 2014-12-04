@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
-  before_action :member_to_project_restriction, except: [:index, :new, :create]
+  before_action :authorize_member, only: [:show]
+  before_action :authorize_owner, only: [:edit, :update, :destroy]
 
   def index
     @projects = Project.page(params[:page])
@@ -47,11 +48,20 @@ class ProjectsController < ApplicationController
 
 private
 
-  def member_to_project_restriction
+  def authorize_member
     @project = Project.find(params[:id])
     unless @project.memberships.where(user_id: current_user.id).exists?
       render file: 'public/404', status: :not_found, layout: false
     end
   end
+
+  def authorize_owner
+    @project = Project.find(params[:id])
+      unless @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
+        render file: 'public/404', status: :not_found, layout: false
+    end
+  end
+
+
 
 end
