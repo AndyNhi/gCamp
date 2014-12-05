@@ -28,7 +28,7 @@ feature 'Membership' do
 
   scenario "users are removed as members of a project" do
     signin
-    membership = Membership.create!(project_id: @project.id, user_id: @user.id, role: 'Member')
+    membership = Membership.create!(project_id: @project.id, user_id: @user.id, role: 'Owner')
     visit project_memberships_path(@project)
     click_on 'delete'
     expect(page).to_not have_content(membership.id)
@@ -36,7 +36,7 @@ feature 'Membership' do
 
   scenario "the role of each member can be updated" do
     signin
-    membership = Membership.create!(project_id: @project.id, user_id: @user.id, role: 'Member')
+    membership = Membership.create!(project_id: @project.id, user_id: @user.id, role: 'Owner')
     visit project_memberships_path(@project)
     find("#edit_membership_#{membership.id}").select('Owner', from: 'membership_role')
     click_on 'Update Membership'

@@ -59,13 +59,31 @@ describe MembershipsController do
 
     end
 
-
   end
 
   describe '#destroy' do
 
-    it 'only project owners can destroy memberships'
-    it 'members cannot destory memberships'
+    it 'only project owners can destroy memberships' do
+      owner = create_user
+      member = create_user
+      project = create_project
+      membership = create_membership(user_id: owner.id, project_id: project.id, role: 'Owner')
+      membership_2 = create_membership(user_id: member.id, project_id: project.id, role: 'Member')
+      session[:user_id] = owner.id
+      delete :destroy, project_id: project.id, id: membership_2
+      expect(project.memberships.count).to eq(1)
+    end
+
+    it 'members cannot destory memberships' do
+      owner = create_user
+      member = create_user
+      project = create_project
+      membership = create_membership(user_id: owner.id, project_id: project.id, role: 'Member')
+      membership_2 = create_membership(user_id: member.id, project_id: project.id, role: 'Member')
+      session[:user_id] = owner.id
+      delete :destroy, project_id: project.id, id: membership_2
+      expect(project.memberships.count).to eq(2)
+    end
 
   end
 

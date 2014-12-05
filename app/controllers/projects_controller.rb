@@ -51,14 +51,14 @@ private
   def authorize_member
     @project = Project.find(params[:id])
     unless @project.memberships.where(user_id: current_user.id).exists?
-      render file: 'public/404', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
   def authorize_owner
     @project = Project.find(params[:id])
       unless @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
-        render file: 'public/404', status: :not_found, layout: false
+        raise AccessDenied
     end
   end
 

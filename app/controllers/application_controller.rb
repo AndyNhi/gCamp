@@ -18,7 +18,15 @@ class ApplicationController < ActionController::Base
     redirect_to signin_path, notice: "You must be logged in to access that information" unless current_user.present?
   end
 
+  class AccessDenied < StandardError; end
 
+  rescue_from AccessDenied, with: :record_not_found
+
+  private
+
+  def record_not_found
+    render file: 'public/404', status: :not_found, layout: false
+  end
 
 
 end

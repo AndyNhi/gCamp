@@ -1,4 +1,4 @@
-require 'rails_helper'
+  require 'rails_helper'
 
 feature "Project" do
 
@@ -32,7 +32,7 @@ feature "Project" do
   end
 
   scenario "update project" do
-    create_membership(user_id: @user.id, project_id: @project.id)
+    create_membership(user_id: @user.id, project_id: @project.id, role: 'Owner')
     visit project_path(@project)
     click_on "Edit"
     fill_in "Description", with: "Project X"

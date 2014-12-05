@@ -2,6 +2,7 @@ class MembershipsController < ApplicationController
 
   before_action :authorize_current_user_membership
   before_action :authorize_owner, only: [:update, :destroy]
+  # before_action :authorize_member_self_delete, only: [:destroy]
 
   before_action do
     @project = Project.find(params[:project_id])
@@ -42,7 +43,7 @@ private
   def authorize_current_user_membership
     @project = Project.find(params[:project_id])
       unless @project.memberships.where(user_id: current_user.id).exists?
-        render file: 'public/404', status: :not_found, layout: false
+        raise AccessDenied
     end
   end
 
@@ -51,8 +52,16 @@ private
       unless @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
         @membership = @project.memberships.new
         @memberships = @project.memberships.all
-        render :index
+        raise AccessDenied
       end
   end
+
+  # def authorize_member_self_delete
+    # @project = Project.find(params[:project_id])
+      # unless @project.memberships.where(user_id: current_user.id, role: 'Member').exists?
+    # end
+
+  # end
+
 
 end
