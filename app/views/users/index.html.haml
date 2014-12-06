@@ -14,6 +14,5 @@
       %td= link_to("#{user.first_name + " " + user.last_name}", user_path(user))
       %td= mail_to(user.email_address)
       %td
-        .pull-right
-          -# = link_to 'Show', user, class: 'btn btn-primary'
+        - if user.id == current_user.id
           = link_to 'Edit', edit_user_path(user), class: 'btn btn-success'

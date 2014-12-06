@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :validates_user_is_present, only: [:new, :create, :signup]
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def set_user
     @user = User.find(params[:id])
@@ -22,7 +23,6 @@ class UsersController < ApplicationController
   def signup
     @user = User.new
   end
-
 
   def edit
   end
@@ -51,5 +51,13 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+private
+
+  def authorize_user
+    @user = User.find(params[:id])
+      unless @user.id == current_user.id
+        raise AccessDenied
+      end
+  end
 
 end
