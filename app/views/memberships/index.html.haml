@@ -7,13 +7,11 @@
 
 - if @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
   = render 'form'
-  - @memberships.each do |m|
-    = render 'edit_form', membership: m
-- else
 
-  - @memberships.each do |m|
-    .row
-      .col-md-1
-        %p= "#{m.user.first_name} #{m.user.last_name}"
-      .col-md-2.col-md-offset
-        %p= m.role
+- @memberships.each do |m|
+  - if m.user.id == current_user.id && m.role == 'Member'
+    = render 'member_form', membership: m
+  - elsif @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
+    = render 'owner_admin_form', membership: m
+  - else
+    = render 'display_form', membership: m

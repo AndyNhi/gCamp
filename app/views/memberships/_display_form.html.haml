@@ -1,0 +1,4 @@
+.table
+  = form_for [@project, membership], html: {class: 'form-inline'}  do |f|
+    .form-group
+      = "#{membership.user.first_name} #{membership.user.last_name}"

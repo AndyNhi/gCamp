@@ -74,15 +74,28 @@ describe MembershipsController do
       expect(project.memberships.count).to eq(1)
     end
 
-    it 'members cannot destory memberships' do
+    it 'members can destroy themself from a project' do
       owner = create_user
       member = create_user
       project = create_project
-      membership = create_membership(user_id: owner.id, project_id: project.id, role: 'Member')
+      membership = create_membership(user_id: owner.id, project_id: project.id, role: 'Owner')
       membership_2 = create_membership(user_id: member.id, project_id: project.id, role: 'Member')
-      session[:user_id] = owner.id
+      session[:user_id] = member.id
       delete :destroy, project_id: project.id, id: membership_2
-      expect(project.memberships.count).to eq(2)
+      expect(project.memberships.count).to eq(1)
+    end
+
+    it 'members cannot destroy other members' do
+      owner = create_user
+      member_1 = create_user
+      member_2 = create_user
+      project = create_project
+      membership_owner = create_membership(user: owner, project: project, role: 'Owner')
+      membership_member_1 = create_membership(user: member_1, project: project, role: 'Member')
+      membership_member_2 = create_membership(user: member_2, project: project, role: 'Member')
+      session[:user_id] = member_1
+      delete :destroy, project_id: project.id, id: membership_member_2
+      expect(response.status).to eq(404)
     end
 
   end
