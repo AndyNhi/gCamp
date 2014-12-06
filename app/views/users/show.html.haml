@@ -10,9 +10,10 @@
     %tr
       %th Last Name: &nbsp;
       %td= @user.last_name
-    %tr
-      %th Email Address: &nbsp;
-      %td= mail_to(@user.email_address)
+    - if current_user.id == @user.id
+      %tr
+        %th Email Address: &nbsp;
+        %td= mail_to(@user.email_address)
 
 
     %tr
