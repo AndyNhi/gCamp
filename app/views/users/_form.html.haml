@@ -13,6 +13,11 @@
     = f.label :email_address, class: 'col-sm-2 control-label'
     .col-sm-5
       = f.text_field :email_address, class: 'form-control'
+  - if current_user.admin == true
+    .form-group
+      = f.label :admin, class: 'col-sm-2 control-label'
+      .col-sm-5.control-label
+        = f.check_box :admin, class: 'checkbox'
   .form-group
     = f.label :password, class: 'col-sm-2 control-label'
     .col-sm-5

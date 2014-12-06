@@ -15,6 +15,7 @@ module ObjectCreationMethods
       last_name: Faker::Name.last_name,
       email_address: Faker::Internet.email,
       password: 'password',
+      admin: false,
     }
 
     User.create(defaults.merge(overrides))

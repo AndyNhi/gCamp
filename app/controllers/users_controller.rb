@@ -28,21 +28,35 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit( :first_name, :last_name, :email_address, :password, :password_confirmation))
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to new_project_path, notice: 'User was successfully created.'
+    if authorized_admin?
+      @user = User.new(params.require(:user).permit( :first_name, :last_name, :email_address, :password, :password_confirmation, :admin))
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to new_project_path, notice: 'User was successfully created.'
+      else
+        @error_messages = @user.errors.full_messages
+        render :new
+      end
     else
-      @error_messages = @user.errors.full_messages
-      render :new
+      raise AccessDenied
     end
   end
 
   def update
-    if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation))
-      redirect_to users_path, notice: 'User was successfully updated.'
+    if authorized_admin?
+      if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation, :admin))
+        redirect_to users_path, notice: 'User was successfully updated.'
+      else
+        render :edit
+      end
+    elsif authorized_user?
+      if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation))
+        redirect_to users_path, notice: 'User was successfully updated.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      raise AccessDenied
     end
   end
 
@@ -59,5 +73,15 @@ private
         raise AccessDenied
       end
   end
+
+  def authorized_admin?
+    current_user.admin == true
+  end
+
+  def authorized_user?
+    current_user.admin == false
+  end
+
+
 
 end
