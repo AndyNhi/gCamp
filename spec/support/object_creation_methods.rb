@@ -17,10 +17,8 @@ module ObjectCreationMethods
       password: 'password',
       admin: false,
     }
-
     User.create(defaults.merge(overrides))
   end
-
 
   def create_membership(overrides = {})
     defaults = {
@@ -34,7 +32,6 @@ module ObjectCreationMethods
   def update_membership(overrides = {})
     create_membership
   end
-
 
   def new_task(overrides = {})
     defaults = {

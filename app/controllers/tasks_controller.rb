@@ -73,12 +73,12 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :due_date, :complete)
+    params.require(:task).permit(:description, :due_date, :complete)
   end
 
   def member_to_task_restriction
     unless current_user_member?
-      render file: 'public/404', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 

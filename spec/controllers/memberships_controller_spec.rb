@@ -31,10 +31,10 @@ describe MembershipsController do
 
   end
 
+
   describe '#update' do
 
-    it 'only project owners can update memberships' do
-
+    it 'membership as owner' do
       owner = create_user
       member = create_user
       project = create_project
@@ -43,11 +43,20 @@ describe MembershipsController do
       session[:user_id] = owner.id
       patch :update, project_id: project.id, id: membership_2.id, "membership"=>{"role"=>"Owner"}
       expect(membership_2.reload.role).to eq('Owner')
-
     end
 
-    it 'members cannot update memberships' do
+    it 'membership as admin' do
+      admin = create_user(admin: true)
+      member = create_user
+      project = create_project
+      membership = create_membership(user_id: admin.id, project_id: project.id, role: 'Owner')
+      membership_2 = create_membership(user_id: member.id, project_id: project.id, role: 'Member')
+      session[:user_id] = admin.id
+      patch :update, project_id: project.id, id: membership_2.id, "membership"=>{"role"=>"Owner"}
+      expect(membership_2.reload.role).to eq('Owner')
+    end
 
+    it 'restricted from members' do
       owner = create_user
       member = create_user
       project = create_project
@@ -56,14 +65,13 @@ describe MembershipsController do
       session[:user_id] = owner.id
       patch :update, project_id: project.id, id: membership_2.id, "membership"=>{"role"=>"Owner"}
       expect(membership_2.reload.role).to_not eq('Owner')
-
     end
 
   end
 
   describe '#destroy' do
 
-    it 'only project owners can destroy memberships' do
+    it 'membership as owner' do
       owner = create_user
       member = create_user
       project = create_project
@@ -74,7 +82,18 @@ describe MembershipsController do
       expect(project.memberships.count).to eq(1)
     end
 
-    it 'members can destroy themself from a project' do
+    it 'membership as admin' do
+      admin = create_user(admin: true)
+      member = create_user
+      project = create_project
+      membership = create_membership(user_id: admin.id, project_id: project.id, role: 'Owner')
+      membership_2 = create_membership(user_id: member.id, project_id: project.id, role: 'Member')
+      session[:user_id] = admin.id
+      delete :destroy, project_id: project.id, id: membership_2
+      expect(project.memberships.count).to eq(1)
+    end
+
+    it 'membership as member & current user' do
       owner = create_user
       member = create_user
       project = create_project
@@ -85,7 +104,7 @@ describe MembershipsController do
       expect(project.memberships.count).to eq(1)
     end
 
-    it 'members cannot destroy other members' do
+    it 'restricted from members' do
       owner = create_user
       member_1 = create_user
       member_2 = create_user
