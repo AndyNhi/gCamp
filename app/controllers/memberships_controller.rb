@@ -67,8 +67,6 @@ class MembershipsController < ApplicationController
   def authorize_owner_update
     @project = Project.find(params[:project_id])
     unless owner?
-      @membership = @project.memberships.new
-      @memberships = @project.memberships.all
       raise AccessDenied
     end
   end

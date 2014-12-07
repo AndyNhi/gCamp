@@ -90,15 +90,7 @@ describe MembershipsController do
       expect(response).to be_success
     end
 
-
   end
-
-
-
-
-
-
-
 
   describe '#update' do
 
@@ -128,9 +120,9 @@ describe MembershipsController do
       owner = create_user
       member = create_user
       project = create_project
-      membership = create_membership(user_id: owner.id, project_id: project.id, role: 'Member')
+      membership = create_membership(user_id: owner.id, project_id: project.id, role: 'Owner')
       membership_2 = create_membership(user_id: member.id, project_id: project.id, role: 'Member')
-      session[:user_id] = owner.id
+      session[:user_id] = member.id
       patch :update, project_id: project.id, id: membership_2.id, "membership"=>{"role"=>"Owner"}
       expect(membership_2.reload.role).to_not eq('Owner')
     end
@@ -183,6 +175,14 @@ describe MembershipsController do
       session[:user_id] = member_1
       delete :destroy, project_id: project.id, id: membership_member_2
       expect(response.status).to eq(404)
+    end
+
+    it 'redirects non-user to sign in' do
+      user = create_user
+      project = create_project
+      membership = create_membership(user_id: user.id, project_id: project.id, role: 'Owner')
+      delete :destroy, project_id: project.id, id: user
+      expect(response).to redirect_to(signin_path)
     end
 
   end
