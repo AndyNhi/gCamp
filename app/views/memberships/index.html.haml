@@ -11,7 +11,7 @@
 - @memberships.each do |m|
   - if m.user.id == current_user.id && m.role == 'Member'
     = render 'member_form', membership: m
-  - elsif @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
+  - elsif owner?
     = render 'owner_admin_form', membership: m
   - else
     = render 'display_form', membership: m

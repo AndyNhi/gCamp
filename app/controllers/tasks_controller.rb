@@ -77,7 +77,7 @@ class TasksController < ApplicationController
   end
 
   def member_to_task_restriction
-    unless @project.memberships.where(user_id: current_user.id).exists?
+    unless current_user_member?
       render file: 'public/404', status: :not_found, layout: false
     end
   end

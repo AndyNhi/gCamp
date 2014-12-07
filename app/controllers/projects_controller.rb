@@ -50,14 +50,14 @@ private
 
   def authorize_member
     @project = Project.find(params[:id])
-    unless @project.memberships.where(user_id: current_user.id).exists?
+    unless current_user_member?
       raise AccessDenied
     end
   end
 
   def authorize_owner
     @project = Project.find(params[:id])
-      unless @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
+      unless owner?
         raise AccessDenied
     end
   end

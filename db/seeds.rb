@@ -7,6 +7,7 @@ Membership.delete_all
 admin = User.create!(
   first_name: 'Admin',
   last_name: 'User',
+  admin: true,
   email_address: 'admin@example.com',
   password: 'password'
 )

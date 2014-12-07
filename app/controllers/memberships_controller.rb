@@ -38,12 +38,12 @@ class MembershipsController < ApplicationController
       redirect_to project_memberships_path(@project, @membership),
       notice: "You can't delete the last owner.  Please add another owner first."
     elsif member?
-      if @membership.user.id != current_user.id
+      if @membership.user.id != current_user.id && !admin?
         raise AccessDenied
       else
         @membership.destroy
         redirect_to projects_path,
-        notice: "You have successfully remove yourself from the project"
+        notice: "#{@membership.user.first_name} was removed successfully"
       end
     elsif owner?
       @membership.destroy
@@ -59,7 +59,7 @@ class MembershipsController < ApplicationController
 
   def authorize_current_user_membership
     @project = Project.find(params[:project_id])
-    unless @project.memberships.where(user_id: current_user.id).exists?
+    unless current_user_member?
       raise AccessDenied
     end
   end
