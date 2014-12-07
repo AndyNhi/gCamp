@@ -16,7 +16,6 @@ feature "Authentication" do
   scenario "sign up" do
     visit root_path
     click_on('Sign Up')
-    visit '/sign-up'
     fill_in 'First name', with: 'test'
     fill_in 'Last name', with: 'test'
     fill_in 'Email address', with: 'test@email.com'

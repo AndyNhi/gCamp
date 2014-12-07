@@ -28,8 +28,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    if authorized_admin?
-      @user = User.new(params.require(:user).permit( :first_name, :last_name, :email_address, :password, :password_confirmation, :admin))
+    if guest?
+      @user = User.new(params.require(:user).permit( :first_name, :last_name, :email_address, :password, :password_confirmation))
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to new_project_path, notice: 'User was successfully created.'
+      else
+        @error_messages = @user.errors.full_messages
+        render :signup
+      end
+    elsif admin?
+      @user = User.new(params.require(:user).permit( :first_name, :last_name, :email_address, :password, :password_confirmation))
       if @user.save
         session[:user_id] = @user.id
         redirect_to new_project_path, notice: 'User was successfully created.'
@@ -43,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if authorized_admin?
+    if admin?
       if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation, :admin))
         redirect_to users_path, notice: 'User was successfully updated.'
       else
@@ -74,12 +83,8 @@ private
       end
   end
 
-  def authorized_admin?
-    current_user.admin == true
-  end
-
   def authorized_user?
-    current_user.admin == false
+    current_user.admin == false && @user.id == current_user.id
   end
 
 

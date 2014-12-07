@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "User Crud" do
 
   before(:each) do
-    @user = create_user
+    @user = create_user(admin: true)
     signin
   end
 

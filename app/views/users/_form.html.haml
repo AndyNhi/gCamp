@@ -1,38 +1,42 @@
-%h2= title
-= form_for(@user, html: {class: "form-horizontal"}) do |f|
-  = render 'layouts/errors', model: @user
-  .form-group
-    = f.label :first_name, class: 'col-sm-2 control-label'
-    .col-sm-5
-      = f.text_field :first_name, class: 'form-control'
-  .form-group
-    = f.label :last_name, class: 'col-sm-2 control-label'
-    .col-sm-5
-      = f.text_field :last_name, class: 'form-control'
-  .form-group
-    = f.label :email_address, class: 'col-sm-2 control-label'
-    .col-sm-5
-      = f.text_field :email_address, class: 'form-control'
-  - if current_user.admin == true
-    .form-group
-      = f.label :admin, class: 'col-sm-2 control-label'
-      .col-sm-5.control-label
-        = f.check_box :admin, class: 'checkbox'
-  .form-group
-    = f.label :password, class: 'col-sm-2 control-label'
-    .col-sm-5
-      = f.password_field :password, class: 'form-control'
-  .form-group
-    = f.label :password_confirmation, class: 'col-sm-2 control-label'
-    .col-sm-5
-      = f.password_field :password_confirmation, class: 'form-control'
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit :class => 'btn btn-primary'
+%pageheader
+  %h2= title
 
-  - if @user.id?
+.row
+  = form_for(@user, html: {class: "form-horizontal"}) do |f|
     .form-group
-      .col-sm-offset-2.col-sm-5
-        .well
-          %center
-            = link_to 'Delete User', @user,class: 'btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }
+      .col-sm-4.col-sm-offset-2
+        = render 'layouts/errors', model: @user
+    .form-group
+      = f.label :first_name, class: 'col-sm-2 control-label'
+      .col-sm-4
+        = f.text_field :first_name, class: 'form-control'
+    .form-group
+      = f.label :last_name, class: 'col-sm-2 control-label'
+      .col-sm-4
+        = f.text_field :last_name, class: 'form-control'
+    .form-group
+      = f.label :email_address, class: 'col-sm-2 control-label'
+      .col-sm-4
+        = f.text_field :email_address, class: 'form-control'
+    - if current_user.admin == true
+      .form-group
+        = f.label :admin, class: 'col-sm-2 control-label'
+        .col-sm-4
+          = f.check_box :admin, class: 'form-control'
+    .form-group
+      = f.label :password, class: 'col-sm-2 control-label'
+      .col-sm-4
+        = f.password_field :password, class: 'form-control'
+    .form-group
+      = f.label :password_confirmation, class: 'col-sm-2 control-label'
+      .col-sm-4
+        = f.password_field :password_confirmation, class: 'form-control'
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = f.submit :class => 'btn btn-primary'
+    - if @user.id?
+      .form-group
+        .col-sm-offset-2
+          .well
+            %center
+              = link_to 'Delete User', @user,class: 'btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }

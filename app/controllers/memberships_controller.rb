@@ -37,7 +37,7 @@ class MembershipsController < ApplicationController
     if last_owner?
       redirect_to project_memberships_path(@project, @membership),
       notice: "You can't delete the last owner.  Please add another owner first."
-    elsif current_user_is_a_member?
+    elsif member?
       if @membership.user.id != current_user.id
         raise AccessDenied
       else
@@ -45,7 +45,7 @@ class MembershipsController < ApplicationController
         redirect_to projects_path,
         notice: "You have successfully remove yourself from the project"
       end
-    elsif current_user_is_an_owner?
+    elsif owner?
       @membership.destroy
       redirect_to project_memberships_path(@project, @membership),
       notice: "#{@membership.user.first_name} was removed successfully"
@@ -66,28 +66,17 @@ class MembershipsController < ApplicationController
 
   def authorize_owner_update
     @project = Project.find(params[:project_id])
-    unless @project.memberships.where(user_id: current_user.id, role: 'Owner').exists?
+    unless owner?
       @membership = @project.memberships.new
       @memberships = @project.memberships.all
       raise AccessDenied
     end
   end
 
-  def current_user_is_a_member?
-    @project = Project.find(params[:project_id])
-    @project.memberships.where(user_id: current_user.id, role: 'Member').exists?
-  end
-
-  def current_user_is_an_owner?
-    @project = Project.find(params[:project_id])
-    @project.memberships.where(user_id: current_user.id, role: 'Owner')
-  end
-
   def last_owner?
     @project = Project.find(params[:project_id])
     @project.memberships.where(role: 'Owner').count == 1 &&
-    @project.memberships.where(user_id: current_user.id, role: 'Owner').exists? &&
-    @membership.user.id == current_user.id
+    owner? && @membership.user.id == current_user.id
   end
 
 
