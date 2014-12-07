@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
 
   before_action do
-    @project = Project.find(params[:project_id]) #return the project id value
-    @task = Task.find(params[:task_id]) #returns the task id value
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:task_id]) 
   end
 
   def create
