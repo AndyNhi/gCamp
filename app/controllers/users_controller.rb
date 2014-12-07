@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       else
         render :edit
       end
-    elsif authorized_user?
+    elsif authorize_self_user?
       if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation))
         redirect_to users_path, notice: 'User was successfully updated.'
       else
@@ -78,12 +78,12 @@ private
 
   def authorize_user
     @user = User.find(params[:id])
-      unless @user.id == current_user.id
+      unless @user.id == current_user.id || admin?
         raise AccessDenied
       end
   end
 
-  def authorized_user?
+  def authorize_self_user?
     current_user.admin == false && @user.id == current_user.id
   end
 

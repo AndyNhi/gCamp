@@ -17,5 +17,5 @@
       - else
         %td
       %td
-        - if user.id == current_user.id
+        - if user.id == current_user.id || admin?
           = link_to 'Edit', edit_user_path(user), class: 'btn btn-success'
