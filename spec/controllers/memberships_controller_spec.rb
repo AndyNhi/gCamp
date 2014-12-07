@@ -4,7 +4,17 @@ describe MembershipsController do
 
   describe '#index' do
 
-    it 'renders membership index template if they are a member of the project' do
+    it 'renders index if admin' do
+      admin = create_user(admin: true)
+      user = create_user
+      project = create_project
+      membership = create_membership(user_id: user.id, project_id: project.id)
+      session[:user_id] = admin.id
+      get :index, project_id: project.id
+      expect(response).to render_template('index')
+    end
+
+    it 'renders index if member of the project' do
       user = create_user
       project = create_project
       membership = create_membership(user_id: user.id, project_id: project.id)
@@ -13,7 +23,16 @@ describe MembershipsController do
       expect(response).to render_template('index')
     end
 
-    it 'renders 404 redirect if they are not a member of the project' do
+    it 'renders index if owner of the project' do
+      user = create_user
+      project = create_project
+      membership = create_membership(user_id: user.id, project_id: project.id, role: 'Owner')
+      session[:user_id] = user.id
+      get :index, project_id: project.id
+      expect(response).to render_template('index')
+    end
+
+    it 'renders 404 redirect if user not but not member' do
       user = create_user
       project = create_project
       session[:user_id] = user.id
@@ -21,7 +40,7 @@ describe MembershipsController do
       expect(response.status).to eq(404)
     end
 
-    it 'redirect to sign in if non user' do
+    it 'redirect to signin as vistor' do
       user = create_user
       project = create_project
       membership = create_membership(user_id: user.id, project_id: project.id)
@@ -30,6 +49,55 @@ describe MembershipsController do
     end
 
   end
+
+
+  describe  '#create' do
+
+    it 'redirects non-user to sign in' do
+      user = create_user
+      project = create_project
+      post :create, project_id: project.id, membership: { user_id: user.id, project_id: project.id }
+      expect(response).to redirect_to(signin_path)
+    end
+
+    it 'renders 404 redirect if user not but not member' do
+      user = create_user
+      user_2 = create_user
+      project = create_project
+      session[:user_id] = user.id
+      post :create, project_id: project.id, membership: { user_id: user.id, project_id: project.id }
+      expect(response.status).to eq(404)
+    end
+
+    it 'membership as owner' do
+      owner = create_user
+      user = create_user
+      project = create_project
+      session[:user_id] = owner.id
+      membership = create_membership(user_id: owner.id, project_id: project.id, role: 'Owner')
+      post :create, project_id: project.id, membership: { user_id: user.id, project_id: project.id }
+      expect(response).to be_success
+    end
+
+    it 'membership as admin' do
+      admin = create_user(admin: true)
+      user = create_user
+      user_2 = create_user
+      project = create_project
+      session[:user_id] = admin.id
+      membership = create_membership(user_id: user.id, project_id: project.id, role: 'Owner')
+      post :create, project_id: project.id, membership: { user_id: user_2.id, project_id: project.id }
+      expect(response).to be_success
+    end
+
+
+  end
+
+
+
+
+
+
 
 
   describe '#update' do
