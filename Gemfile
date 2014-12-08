@@ -23,16 +23,13 @@ end
 group :development, :test do
   gem 'faker', '~> 1.4.3'
   gem 'pry-rails'
+  gem 'pry-byebug'
 end
-
-
 
 group :development do
   gem 'better_errors', '~> 2.0.0'
   gem 'binding_of_caller'
   gem 'spring'
-  gem 'pry-rails'
-  gem 'pry-byebug'
   gem 'xray-rails', '~> 0.1.14'
 end
 
