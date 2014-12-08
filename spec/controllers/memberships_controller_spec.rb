@@ -50,7 +50,6 @@ describe MembershipsController do
 
   end
 
-
   describe  '#create' do
 
     it 'redirects non-user to sign in' do
