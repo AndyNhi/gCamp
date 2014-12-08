@@ -202,5 +202,59 @@ describe TasksController do
   end
 
 
+  describe '#destroy' do
+
+    it 'task a admin' do
+      admin = create_user(admin: true)
+      project = create_project
+      task = create_task(project: project)
+      session[:user_id] = admin.id
+      delete :destroy, project_id: project.id, id: task
+      expect(project.tasks.count).to eq(0)
+    end
+
+
+    it 'task a owner' do
+      owner = create_user
+      project = create_project
+      membership = create_membership(project: project, user: owner, role: 'Owner')
+      task = create_task(project: project)
+      session[:user_id] = owner.id
+      delete :destroy, project_id: project.id, id: task
+      expect(project.tasks.count).to eq(0)
+    end
+
+
+    it 'task a member' do
+      member = create_user
+      project = create_project
+      membership = create_membership(project: project, user: member, role: 'Member')
+      task = create_task(project: project)
+      session[:user_id] = member.id
+      delete :destroy, project_id: project.id, id: task
+      expect(project.tasks.count).to eq(0)
+    end
+
+    it 'responds as 404 if non-member of task/project' do
+      user = create_user
+      project = create_project
+      user_2 = create_user
+      membership = create_membership(project: project, user: user_2, role: 'Owner')
+      task = create_task(project: project)
+      session[:user_id] = user.id
+      delete :destroy, project_id: project.id, id: task
+      expect(response.status).to eq(404)
+    end
+
+    it 'redirects non user to signin' do
+      project = create_project
+      user = create_user
+      membership = create_membership(project: project, user: user, role: 'Owner')
+      task = create_task(project: project)
+      delete :destroy, project_id: project.id, id: task
+      expect(response).to redirect_to signin_path
+    end
+
+  end
 
 end
