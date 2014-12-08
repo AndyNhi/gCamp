@@ -17,7 +17,13 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if current_user.present? && admin?
+      @user = User.new
+    elsif current_user.present? && current_user.admin == false
+      raise AccessDenied
+    else
+      redirect_to signin_path
+    end
   end
 
   def signup
