@@ -23,14 +23,13 @@
                     %li= link_to(project.description, project_path(project))
                   %li.divider
                   %li= link_to("New Project", new_project_path)
+              %li= link_to('Users', users_path)
 
           %ul.nav.navbar-nav.navbar-right.text-white
             - if current_user
               %li= link_to "Welcome #{current_user.first_name} #{current_user.last_name}", user_path(current_user)
               %li= link_to('Sign Out', signout_path)
-            - else
-              %li= link_to('Sign Up', signup_path)
-              %li= link_to('Sign In', signin_path)
+
 
 
 
