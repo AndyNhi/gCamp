@@ -32,12 +32,32 @@ class ApplicationController < ActionController::Base
 
 
   def validates_user_is_present
-    redirect_to signin_path, notice: "You must be logged in to access that information" unless current_user.present?
+    deny_access unless current_user.present?
   end
 
   def record_not_found
     render file: 'public/404', status: :not_found, layout: false
   end
+
+  def deny_access
+    store_location
+    redirect_to signin_path, notice: "Please sign in to access this page."
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    clear_return_to
+  end
+
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+
+  def clear_return_to
+    session[:return_to] = nil
+  end
+
+
 
   helper_method :current_user
   helper_method :admin?
