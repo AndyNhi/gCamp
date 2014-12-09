@@ -1,4 +1,4 @@
-class AboutController < ApplicationController
+class AboutController < PublicController
 
   def about
     @projects = Project.all.count

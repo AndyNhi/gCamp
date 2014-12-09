@@ -25,6 +25,7 @@
 
       %footer
         .footerline
+          = link_to_unless_current 'Home', root_path
           = link_to_unless_current 'About', about_path
           = link_to_unless_current 'Terms', term_path
           = link_to_unless_current 'FAQ', faq_path

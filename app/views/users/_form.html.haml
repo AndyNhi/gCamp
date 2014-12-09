@@ -18,11 +18,6 @@
       = f.label :email_address, class: 'col-sm-2 control-label'
       .col-sm-4
         = f.text_field :email_address, class: 'form-control'
-    - if current_user.admin == true
-      .form-group
-        = f.label :admin, class: 'col-sm-2 control-label'
-        .col-sm-4
-          = f.check_box :admin, class: 'form-control'
     .form-group
       = f.label :password, class: 'col-sm-2 control-label'
       .col-sm-4
@@ -32,11 +27,16 @@
       .col-sm-4
         = f.password_field :password_confirmation, class: 'form-control'
     .form-group
-      .col-sm-offset-2.col-sm-10
+      - if current_user.admin == true
+        .col-sm-4.col-md-offset-2
+          = f.label :admin
+          = f.check_box :admin
+    .col-sm-offset-2.col-sm-10
+      .form-group
         = f.submit :class => 'btn btn-primary'
     - if @user.id?
       .form-group
-        .col-sm-offset-2
+        .col-sm-4.col-md-offset-2
           .well
             %center
               = link_to 'Delete User', @user,class: 'btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }

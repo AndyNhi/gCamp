@@ -7,7 +7,7 @@
   %thead
     %th Description
     %th Memberships
-    %th Membership Status
+    -# %th Membership Status
     %th Tasks
   %tbody
     - if current_user.admin == true
@@ -15,14 +15,14 @@
         %tr
           %td= link_to(proj.description, project_path(proj))
           %td= link_to(proj.memberships.count, project_memberships_path(proj))
-          %td= if proj.memberships.where(user_id: current_user.id).exists? then "Member" end
+          -# %td= if proj.memberships.where(user_id: current_user.id).exists? then "Member" end
           %td= link_to(proj.tasks.count, project_tasks_path(proj, @tasks))
     - else
       - current_user.projects.each do |proj|
         %tr
           %td= link_to(proj.description, project_path(proj))
           %td= link_to(proj.memberships.count, project_memberships_path(proj))
-          %td= if proj.memberships.where(user_id: current_user.id).exists? then "Member" end
+          -# %td= if proj.memberships.where(user_id: current_user.id).exists? then "Member" end
           %td= link_to(proj.tasks.count, project_tasks_path(proj, @tasks))
 
 = paginate @projects

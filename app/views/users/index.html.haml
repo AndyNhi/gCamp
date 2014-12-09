@@ -3,8 +3,6 @@
     = link_to('Create User', new_user_path, class: 'btn btn-primary')
   %h1 Users List
 
-=current_user.id
-
 %table.table
   %tr
     %th Name
@@ -13,7 +11,7 @@
   - @users.each do |user|
     %tr
       %td= link_to("#{user.first_name + " " + user.last_name}", user_path(user))
-      - if user.id == current_user.id || user.memberships.select(:project_id).any? {|x| current_user.memberships.select(:project_id).any? { |r| r.project_id == x.project_id } }
+      - if user.id == current_user.id || user.memberships.select(:project_id).any? {|x| current_user.memberships.select(:project_id).any? { |r| r.project_id == x.project_id } } || admin?
         %td= mail_to(user.email_address)
       - else
         %td
