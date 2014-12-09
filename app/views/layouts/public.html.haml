@@ -25,13 +25,14 @@
 
       %footer
         .footerline
+          .pull-right
+            = link_to 'https://linkedin.com/in/andynhi/' do
+              = image_tag('linkin_img.png', width: 20)
+            = link_to 'https://github.com/AndyNhi' do
+              = image_tag('github_img.png', width: 20)
+            = link_to 'https://github.com/AndyNhi' do
+              = image_tag('twitter_img.png', width: 20)
           = link_to_unless_current 'Home', root_path
           = link_to_unless_current 'About', about_path
           = link_to_unless_current 'Terms', term_path
           = link_to_unless_current 'FAQ', faq_path
-          = link_to 'https://linkedin.com/in/andynhi/' do
-            = image_tag('linkin_img.png', width: '20em', class: 'col-md-offset-8')
-          = link_to 'https://github.com/AndyNhi' do
-            = image_tag('github_img.png', width: '20em')
-          = link_to 'https://github.com/AndyNhi' do
-            = image_tag('twitter_img.png', width: '20em')
