@@ -30,9 +30,6 @@
               %li= link_to "Welcome #{current_user.first_name} #{current_user.last_name}", user_path(current_user)
               %li= link_to('Sign Out', signout_path)
 
-
-
-
     .container.white
       .padding_adjustment
       - unless notice.nil?
