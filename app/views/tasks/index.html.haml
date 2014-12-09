@@ -39,7 +39,7 @@
           = f.submit :class => 'btn btn-default btn-sm'
       %td
         .pull-right
-          = link_to 'Edit', edit_project_task_path(@project, task), class: 'btn btn-success'
+          = link_to 'Edit', edit_project_task_path(@project, task), class: 'btn btn-primary'
           = link_to '', project_task_path(@project, task), class: 'glyphicon glyphicon-remove', :method => :delete, :data => { :confirm => 'Are you sure?' }, title: 'delete'
 
 

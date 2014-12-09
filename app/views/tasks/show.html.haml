@@ -10,11 +10,17 @@
   %li= link_to('Tasks', project_tasks_path)
   %li.active= 'Show'
 
-%h2 Comments
-%p= "Description: #{@task.description}"
-%p= "Completion: #{@task.complete}"
-%p= "Due Date: #{if @task.due_date.nil? then 'Infinite' else @task.due_date.strftime("%B %e, %Y") end}"
+%p
+  %strong Description:
+  = "#{@task.description}"
+%p
+  %strong Completion:
+  = "#{@task.complete}"
+%p
+  %strong Due Date:
+  ="#{if @task.due_date.nil? then 'Infinite' else @task.due_date.strftime("%B %e, %Y") end}"
 
+%h2 Comments
 - @comments.each do |comment|
   .row
     .col-md-3
