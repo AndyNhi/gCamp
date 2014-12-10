@@ -15,13 +15,13 @@ gem 'pg'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faker', '~> 1.4.3'
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development, :test do
-  gem 'faker', '~> 1.4.3'
   gem 'pry-rails'
   gem 'pry-byebug'
 end
