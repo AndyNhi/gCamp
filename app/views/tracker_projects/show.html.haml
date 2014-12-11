@@ -1,0 +1,17 @@
+.page-header
+  .pull-right
+    %strong showing first 500
+  %h1= "Stories for #{@pivotal_stories_project_name[:name]}"
+%table.table.table-striped.table-bordered
+  %thead
+    %th Story
+    %th Estimate
+    %th Labels
+    %th Current State
+  %tbody
+    - @pivotol_stories_per_project.reverse.each do |story|
+      %tr
+        %td= link_to(story[:name], story[:url])
+        %td= story[:estimate]
+        %td= unless story[:labels][0].nil? then "#{story[:labels][0][:name]}, #{story[:labels][0][:kind]} "end
+        %td= story[:current_state]

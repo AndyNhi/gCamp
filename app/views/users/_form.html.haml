@@ -27,6 +27,10 @@
       .col-sm-4
         = f.password_field :password_confirmation, class: 'form-control'
     .form-group
+      = f.label :pivotal_tracker_token, class: 'col-sm-2 control-label'
+      .col-sm-4
+        = f.text_field :pivotal_tracker_token, class: 'form-control'
+    .form-group
       - if current_user.admin == true
         .col-sm-4.col-md-offset-2
           = f.label :admin

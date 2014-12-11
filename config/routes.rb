@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
+  root 'pages#index'
+
+  resources :tracker_projects, only: [:show]
   resources :users
   resources :projects do
     resources :memberships
     resources :tasks do
       resources :comments, only: [:new, :create]
     end
-
   end
 
 
-  root 'pages#index'
 
   get '/about', to: 'about#about', as: :about
   get '/terms', to: 'term#term', as: :term

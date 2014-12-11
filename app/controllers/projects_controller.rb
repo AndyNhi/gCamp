@@ -5,6 +5,11 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.page(params[:page])
+
+
+    tracker_api = TrackerProject.new
+    @pivotal_projects = tracker_api.projects(current_user.pivotal_tracker_token)
+
   end
 
   def show

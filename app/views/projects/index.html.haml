@@ -15,14 +15,22 @@
         %tr
           %td= link_to(proj.description, project_path(proj))
           %td= link_to(proj.memberships.count, project_memberships_path(proj))
-          -# %td= if proj.memberships.where(user_id: current_user.id).exists? then "Member" end
           %td= link_to(proj.tasks.count, project_tasks_path(proj, @tasks))
     - else
       - current_user.projects.each do |proj|
         %tr
           %td= link_to(proj.description, project_path(proj))
           %td= link_to(proj.memberships.count, project_memberships_path(proj))
-          -# %td= if proj.memberships.where(user_id: current_user.id).exists? then "Member" end
           %td= link_to(proj.tasks.count, project_tasks_path(proj, @tasks))
 
 = paginate @projects
+
+%h1 Pivotal Tracker Projects
+%table.table
+  %thead
+    %th Name
+  %tbody
+    - @pivotal_projects.each do |project|
+      %tr
+        %td
+          = link_to(project[:name], tracker_project_path(project[:id]))

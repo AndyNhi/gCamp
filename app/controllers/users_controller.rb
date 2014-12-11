@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         render :signup
       end
     elsif admin?
-      @user = User.new(params.require(:user).permit( :first_name, :last_name, :email_address, :password, :password_confirmation))
+      @user = User.new(params.require(:user).permit( :first_name, :last_name, :email_address, :password, :password_confirmation, :pivotal_tracker_token))
       if @user.save
         session[:user_id] = @user.id
         redirect_to new_project_path, notice: 'User was successfully created.'
@@ -59,13 +59,13 @@ class UsersController < ApplicationController
 
   def update
     if admin?
-      if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation, :admin))
+      if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation, :admin, :pivotal_tracker_token))
         redirect_to users_path, notice: 'User was successfully updated.'
       else
         render :edit
       end
     elsif authorize_self_user?
-      if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation))
+      if @user.update(params.require(:user).permit(:first_name, :last_name,:email_address, :password, :password_confirmation, :pivotal_tracker_token))
         redirect_to users_path, notice: 'User was successfully updated.'
       else
         render :edit

@@ -16,6 +16,7 @@ gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker', '~> 1.4.3'
+gem 'faraday', '~> 0.9.0'
 
 group :production do
   gem 'rails_12factor'
