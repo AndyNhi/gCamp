@@ -13,5 +13,5 @@
       %tr
         %td= link_to(story[:name], story[:url])
         %td= story[:estimate]
-        %td= unless story[:labels][0].nil? then "#{story[:labels][0][:name]}, #{story[:labels][0][:kind]} "end
+        %td= unless story[:labels][0].nil? then "#{story[:labels][0][:name]}" + "#{", " + story[:labels][1][:name] if story[:labels][1] != nil}" end
         %td= story[:current_state]
