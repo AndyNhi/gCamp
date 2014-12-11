@@ -14,9 +14,10 @@
       %tr
         %th Email Address: &nbsp;
         %td= mail_to(@user.email_address)
-      %tr
-        %th Pivotal Tracker Token: &nbsp;
-        %td= @user.pivotal_tracker_token[0..3] + @user.pivotal_tracker_token.from(4).gsub(/./, "*")
+      - if current_user.pivotal_tracker_token.present?
+        %tr
+          %th Pivotal Tracker Token: &nbsp;
+          %td= @user.pivotal_tracker_token[0..3] + @user.pivotal_tracker_token.from(4).gsub(/./, "*")
     - if admin?
       %tr
         %th Admin

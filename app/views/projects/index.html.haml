@@ -25,12 +25,13 @@
 
 = paginate @projects
 
-%h1 Pivotal Tracker Projects
-%table.table
-  %thead
-    %th Name
-  %tbody
-    - @pivotal_projects.each do |project|
-      %tr
-        %td
-          = link_to(project[:name], tracker_project_path(project[:id]))
+- unless current_user.pivotal_tracker_token.nil?
+  %h1 Pivotal Tracker Projects
+  %table.table
+    %thead
+      %th Name
+    %tbody
+      - @pivotal_projects.each do |project|
+        %tr
+          %td
+            = link_to(project[:name], tracker_project_path(project[:id]))
