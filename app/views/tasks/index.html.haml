@@ -1,20 +1,16 @@
-.page-header
-  .pull-right
-    = link_to 'All', project_tasks_path(@project, status: 'all')
-    = "|"
-    = link_to 'Incomplete', project_tasks_path(status: 'incomplete')
-    = link_to 'Create Task', new_project_task_path, :class => 'btn btn-primary'
-    - if (params[:status]) == 'incomplete'
-      = link_to 'Download CSV', project_tasks_path(format: :csv, status: params[:status], sort: params[:sort]), class: 'btn btn-default'
-    - else
-      = link_to 'Download CSV', project_tasks_path(format: :csv, status: params[:status], sort: params[:sort]), class: 'btn btn-default'
-  %h1= "Tasks for #{@project.description}"
-  %ol.breadcrumb
-    %li= link_to('Projects', projects_path)
-    %li= link_to(@project.description, project_path(@project))
-    %li.active= ("Tasks")
+= page_header "Tasks for #{@project.description}" do
+  = link_to 'All |', project_tasks_path(@project, status: 'all')
+  = link_to 'Incomplete', project_tasks_path(status: 'incomplete')
+  = link_to 'Create Task', new_project_task_path, :class => 'btn btn-primary'
+  - if (params[:status]) == 'incomplete'
+    = link_to 'Download CSV', project_tasks_path(format: :csv, status: params[:status], sort: params[:sort]), class: 'btn btn-default'
+  - else
+    = link_to 'Download CSV', project_tasks_path(format: :csv, status: params[:status], sort: params[:sort]), class: 'btn btn-default'
 
-
+%ol.breadcrumb
+  %li= link_to('Projects', projects_path)
+  %li= link_to(@project.description, project_path(@project))
+  %li.active= ("Tasks")
 
 %table.table
   %tr

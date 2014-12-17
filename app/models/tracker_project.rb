@@ -4,10 +4,9 @@ class TrackerProject
     @connection = Faraday.new(url: 'https://www.pivotaltracker.com')
   end
 
-  @nil_token = { return [] if token.nil? }
 
   def project(project,token)
-    @nil_token
+    return [] if token.nil?
     response = @connection.get do |req|
       req.url "/services/v5/projects/#{project}"
       req.headers['Content-Type'] = 'application/json'
@@ -18,7 +17,7 @@ class TrackerProject
 
 
   def projects(token)
-    @nil_token
+    return [] if token.nil?
     response = @connection.get do |req|
       req.url "/services/v5/projects"
       req.headers['Content-Type'] = 'application/json'
@@ -30,7 +29,7 @@ class TrackerProject
 
 
   def stories(project,token)
-    @nil_token
+    return [] if token.nil?
     response = @connection.get do |req|
       req.url "/services/v5/projects/#{project}/stories?limit=500"
       req.headers['Content-Type'] = 'application/json'

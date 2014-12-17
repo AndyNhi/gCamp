@@ -1,13 +1,11 @@
-.page-header
-  .pull-right
-    = link_to('Create Project', new_project_path, class: 'btn btn-primary')
-  %h1 Project Index Page
+= page_header "Projects Index Page" do
+  = link_to('Create Project', new_project_path, class: 'btn btn-primary')
+
 
 %table.table
   %thead
     %th Description
     %th Memberships
-    -# %th Membership Status
     %th Tasks
   %tbody
     - if current_user.admin == true
