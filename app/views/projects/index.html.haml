@@ -23,7 +23,7 @@
 
 = paginate @projects
 
-- unless current_user.pivotal_tracker_token.nil?
+- unless current_user.pivotal_tracker_token.lstrip.empty?
   %h1 Pivotal Tracker Projects
   %table.table
     %thead
